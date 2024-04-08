@@ -10,21 +10,21 @@
     <link rel="stylesheet" href="style.css" />
     <title>FreshPicks</title>
   </head>
-  <body>
+  <body> 
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="#" method="post" class="sign-in-form">
             <h2 class="title">Welcome to FreshPicks</h2>
             <h6 class="sub-title">Shop local, eat fresh with our farmer market app</h6><br>
 
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" name="email"/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password"/>
             </div>
             <div class="input-field">
                 <i class="fas fa-users"></i>
@@ -35,21 +35,7 @@
                 </select>
             </div>
             <input type="submit" value="Login" class="btn solid" />
-            <!-- <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div> -->
+            
           </form>
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign-up</h2>
@@ -82,22 +68,6 @@
                 </select>
             </div>
             <input type="submit" value="Signup" class="btn solid" />
-            <!-- <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Or Sign up with google</p>
-            <div class="social-media">
-               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a> -->
-              <!-- <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a> -->
-              <!-- <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a> -->
-            <!-- </div> --> 
           </form>
         </div>
       </div>
@@ -126,6 +96,28 @@
       </div>
     </div>
 
+    <script >document.querySelector('.sign-in-form').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent default form submission behavior
+      const formData = new FormData(this); // Get form data
+      const url = '/api/auth/login'; 
+      try {
+          const response = await fetch(url, {
+              method: 'post',
+              body: formData
+          });
+            
+          if (response.ok) {
+              const data = await response.json();
+              console.log(data); // Handle success response
+          }else{
+              throw new Error('Failed to login'); // Handle error response
+              // console.log('Failed to login');
+          }
+      } catch (error) {
+          console.error(error.message);
+      }
+  });
+  </script>
     <script src="style.js"></script>
   </body>
 </html>

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/AuthRoutes');
+// const cors = require('cors');
 // MONGODB_URI="mongodb://localhost:27017";
 
 dotenv.config();
@@ -18,6 +19,7 @@ const app = express();
 
 // Middleware for parsing JSON body
 app.use(express.json());
+// app.use(cors());// Middleware for serving static files
 
 // Routes for authentication
 app.use('/api/auth', authRoutes);
