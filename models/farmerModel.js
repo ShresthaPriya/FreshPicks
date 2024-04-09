@@ -15,10 +15,13 @@ const farmerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    phone_number: {
+    confirm_password:{
         type: String,
-        required: true,
-        unique: true
+        required: true
+    },
+    address:{
+        type: String,
+        required: true
     },
     role: {
         type: String,

@@ -15,11 +15,6 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    phone_number: {
-        type: String,
-        required: true,
-        unique: true
-    },
     role: {
         type: String,
         required: true

@@ -4,7 +4,7 @@ const Customer = require('../models/UserModel');
 
 exports.signup = async (req, res) => {
     try {
-        const { username, email, password, phone_number, role } = req.body;
+        const { username, email, password,confirm_password,address, phone_number, role } = req.body;
 
         // Logging the role received from the reques
         if (!phone_number) {
@@ -20,9 +20,9 @@ exports.signup = async (req, res) => {
 
         let newUser;
         if (role.toLowerCase() === 'farmer') {
-            newUser = new Farmer({ username, email, password: hashedPassword, phone_number, role });
+            newUser = new Farmer({ username, email, password: hashedPassword,confirm_password,address, phone_number, role });
         } else if (role.toLowerCase() === 'customer') {
-            newUser = new Customer({ username, email, password: hashedPassword, phone_number, role });
+            newUser = new Customer({ username, email, password: hashedPassword,confirm_password,address, phone_number, role });
         }
 
         await newUser.save();
@@ -32,12 +32,6 @@ exports.signup = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
-
-
-
-
-
 exports.login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
@@ -67,9 +61,8 @@ exports.login = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Compare passwords
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-        if (!isPasswordValid) {
+        // Compare passwords (Note: This is not recommended for production use)
+        if (user.password !== password) {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
