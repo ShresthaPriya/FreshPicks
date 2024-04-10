@@ -15,7 +15,12 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          
+          <nav>
+            <div class="logo-name">
+              <button id="adminButton"  class="adminlogo"><i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+              </button>
+            </div>
+            </nav>
           <form method="post" action="/api/customer/login" class="sign-in-form">
             <h2 class="title">Welcome to FreshPicks</h2>
             <h6 class="sub-title">Shop local, eat fresh with our farmer market app</h6><br>
@@ -107,7 +112,13 @@
 
     <script >
 
+document.addEventListener("DOMContentLoaded", function() {
+  const adminButton = document.getElementById("adminButton");
 
+  adminButton.addEventListener("click", function() {
+    window.location.href = "admin.html";
+  });
+});
   </script>
   <script src="collection/signup.js"></script>
   <script src="collection/login.js"></script>

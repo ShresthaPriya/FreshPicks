@@ -70,6 +70,19 @@ form.sign-in-form {
   color: #e56123;
 }
 
+.logo-name {
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.adminlogo {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: -50px; /* Adjust top positioning as needed */
+  right: 20px; /* Adjust right positioning as needed */
+}
+
 .input-field {
   max-width: 380px;
   width: 100%;
