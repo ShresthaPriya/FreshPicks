@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // Redirect to appropriate home page based on role
       if (role === 'farmer') {
-        window.location.href = "farmerhome.html";
+        window.location.href = "FarmerHomepage.html";
       } else if (role === 'customer') {
-        window.location.href = "farmerhome.html";
+        window.location.href = "user.html";
       }
     } catch (loginError) {
       console.error('Error logging in user:', loginError.message);
