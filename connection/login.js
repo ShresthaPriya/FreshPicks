@@ -1,57 +1,39 @@
-document.querySelector('.sign-in-form').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent default form submission behavior
-    const formData = new FormData(this); // Get form data
-    const url = '/api/auth/login'; 
-    try {
-        const response = await fetch(url, {
-            method: 'post',
-            body: formData
-        });
-          
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data); // Handle success response
-        }else{
-            throw new Error('Failed to login'); // Handle error response
-            // console.log('Failed to login');
-        }
-    } catch (error) {
-        console.error(error.message);
+const loginForm = document.querySelector('.sign-in-form');
+loginForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById('email_for_login').value;
+  const password = document.getElementById('password_for_login').value;
+  const role = document.getElementById('role_for_login').value;
+
+  try {
+    const loginResponse = await fetch(`/api/${role}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    if (!loginResponse.ok) {
+      // Handle invalid credentials by displaying an error message
+      const errorMessage = await loginResponse.json();
+      document.getElementById('login-error').textContent = errorMessage.error;
+      return;
     }
+
+    const loginUserData = await loginResponse.json();
+    console.log('User logged in successfully:', loginUserData);
+
+    // Redirect to appropriate home page based on role
+    if (loginUserData.role === 'farmer') {
+      window.location.href = "admin.html";
+    } else if (loginUserData.role === 'customer') {
+      window.location.href = "customerhome.html";
+    } else {
+    }
+
+  } catch (loginError) {
+    console.error('Error logging in user:', loginError.message);
+  }
 });
-
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const signupForm = document.getElementById('signup-form');
-  
-//     signupForm.addEventListener('submit', async (event) => {
-//       event.preventDefault();
-  
-//       const email = document.getElementById('email').value;
-//       const username = document.getElementById('username').value;
-//       const dob = document.getElementById('dob').value;
-//       const password = document.getElementById('password').value;
-  
-//       try {
-//         const response = await fetch('/api/users', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-//           body: JSON.stringify({ email, username, dob, password })
-//         });
-  
-//         if (!response.ok) {
-//           throw new Error('Failed to register user');
-//         }
-  
-//         const userData = await response.json();
-//         console.log('User registered successfully:', userData);
-//         // Redirect or perform other actions after successful registration
-//       } catch (error) {
-//         console.error('Error registering user:', error.message);
-//       }
-//     });
-// });
