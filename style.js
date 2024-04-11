@@ -9,3 +9,20 @@ sign_up_btn.addEventListener("click", () => {
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const backButton = document.getElementById("backButton");
+
+  backButton.addEventListener("click", function(event) {
+    // Prevent the default behavior of the link
+    event.preventDefault();
+    
+    // Perform any additional actions here, such as animations or prompts
+    
+    // Redirect to the login_ad.html page after a short delay (for demonstration purposes)
+    setTimeout(function() {
+      window.location.href = backButton.getAttribute("href");
+    }, 500); // Adjust the delay time as needed
+  });
+});

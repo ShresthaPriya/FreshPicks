@@ -436,3 +436,10 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+#cross-icon {
+  position: absolute;
+  top: -170px;
+  right: 20px;
+  cursor: pointer;
+}
