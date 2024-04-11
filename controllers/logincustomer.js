@@ -3,9 +3,7 @@ const User = require('../models/UserModel');
 const loginCustomer = async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log('Email from request:', email); // Debug log
         const user = await User.findOne({ email });
-        console.log('User from database:', user); // Debug log
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid email.' });
@@ -18,7 +16,7 @@ const loginCustomer = async (req, res) => {
 
         // Passwords match, user is authenticated
         res.status(200).json({ user });
-        console.log("User logged in successfully");
+        console.log("Customer logged in successfully");
 
     } catch (error) {
         // If any error occurs, return a 500 status with the error message
