@@ -437,3 +437,22 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+#cross-icon-container {
+  position: absolute;
+  top: -170px;
+  right: 20px;
+  width: 40px; /* Adjust the width and height to increase the size of the circle */
+  height: 40px;
+  border-radius: 50%; /* Make the container a circle */
+  background-color: #e56123; /* Set the background color of the circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#cross-icon {
+  color: white; /* Set the color of the icon */
+  font-size: 1.5rem; /* Increase the icon size */
+}

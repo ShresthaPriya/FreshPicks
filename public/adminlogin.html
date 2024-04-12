@@ -33,7 +33,13 @@
             <!-- Error message element -->
             <div id="admin-login-error" class="error-message"></div>
           </form>
+          <div id="cross-icon-container">
+            <i id="cross-icon" class="fas fa-times"></i>
+          </div>
           
+          <i id="cross-icon" class="fas fa-times"></i>
+        </div>
+      </div>
           
         </div>
       </div>
@@ -48,7 +54,23 @@
     </div>
 
     <script >
+      document.addEventListener("DOMContentLoaded", function() {
+        const adminButton = document.getElementById("adminButton");
 
+        adminButton.addEventListener("click", function() {
+          window.location.href = "admin.html";
+        });
+      });
+    </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const crossIcon = document.getElementById("cross-icon");
+    
+          crossIcon.addEventListener("click", function() {
+            // Redirect to the signup page
+            window.location.href = "index.html";
+          });
+        });
   </script>
   <script src="collection/adminlogin.js"></script>
 
