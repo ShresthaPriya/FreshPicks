@@ -456,3 +456,12 @@ form.sign-in-form {
   color: white; /* Set the color of the icon */
   font-size: 1.5rem; /* Increase the icon size */
 }
+
+
+#email-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  grid-column: 1 / -1; /* Span across all columns */
+}
+

@@ -52,7 +52,8 @@
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" id="email_for_signup" placeholder="Email" />
+              <input type="email" id="email_for_signup" placeholder="Email" onblur="validateEmail()" />
+              <div id="email-error"></div> <!-- This div will display the error message -->
             </div>
             <div class="input-field">
               <i class="fas fa-home"></i>
