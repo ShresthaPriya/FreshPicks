@@ -464,10 +464,3 @@ form.sign-in-form {
   margin-top: 5px;
   grid-column: 1 / -1; /* Span across all columns */
 }
-
-#signup-error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-  grid-column: 1 / -1; /* Span across all columns */
-}
