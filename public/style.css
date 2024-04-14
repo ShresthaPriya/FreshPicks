@@ -411,7 +411,18 @@ form.sign-in-form {
   .image{
     display: none;
   }
+.container.sign-up-mode form.sign-up-form .input-field {
+  height: 40px; 
 }
+
+.container.sign-up-mode form.sign-up-form .input-field input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+  line-height: 40px; 
+}
+
+}
+
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
@@ -437,19 +448,19 @@ form.sign-in-form {
     left: 50%;
   }
 }
-
 #cross-icon-container {
   position: absolute;
-  top: -170px;
+  top: -150px;
   right: 20px;
-  width: 40px; /* Adjust the width and height to increase the size of the circle */
+  width: 40px;
   height: 40px;
-  border-radius: 50%; /* Make the container a circle */
-  background-color: #e56123; /* Set the background color of the circle */
+  border-radius: 50%; 
+  background-color: #e56123; 
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 2px solid transparent; 
 }
 
 #cross-icon {
