@@ -4,7 +4,8 @@ function validateEmail() {
   
   if (emailField.trim() === "") {
     emailerror.innerText = ""; // Clear the error message if email field is empty
-  } else if (!emailField.match(/^([a-zA-Z0-9_\-]+)@([a-zA-Z0-9_\-]+)\.([a-zA-Z]{2,5})$/)) {
+  } else if (!emailField.match(/^([a-zA-Z0-9_\-]+)@([a-zA-Z_\-]+)\.([a-zA-Z]{2,5})$/
+)) {
     emailerror.innerText = "Please enter a valid email address";
   } else {
     emailerror.innerText = ""; // Clear the error message if email is valid
