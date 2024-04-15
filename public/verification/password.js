@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password_for_signup');
     const confirmPasswordInput = document.getElementById('confirm_password_for_signup');
-    const signupErrorElement = document.getElementById('signup-error');
+    const signupErrorElement = document.getElementById('signuppassword-error');
 
     function validatePassword() {
         const password = passwordInput.value;
@@ -14,13 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         }
 
-        // Check if passwords match
-        if (password !== confirmPassword) {
+        // Clear error message if passwords match
+        if (password === confirmPassword) {
+            signupErrorElement.textContent = '';
+            return true;
+        }
+
+        // Check if confirm password field is not empty before showing error message
+        if (confirmPassword !== '') {
             signupErrorElement.textContent = 'Passwords do not match';
             return false;
         }
 
-        signupErrorElement.textContent = ''; // Clear error message if validation passes
         return true;
     }
 
