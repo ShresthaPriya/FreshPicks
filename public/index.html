@@ -41,7 +41,7 @@
             </div>
             
             <!-- Error message element -->
-            <div id="login-error" class="error-message"></div>
+            <div id="email-error" class="error-message"></div>
           </form>
           
           <form action="/api/farmer" method="post" class="sign-up-form">
@@ -53,8 +53,9 @@
 
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" id="email_for_signup" placeholder="Email" onblur="validateEmail()" />
-              <div id="email-error"></div> <!-- This div will display the error message -->
+              <input type="email" id="email_for_signup" placeholder="Email" />
+              <div id ="errormsg_for_email" class="errormsg_for_email"></div>
+
             </div>
             
             <div class="input-field">
@@ -68,6 +69,7 @@
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input type="password" id="confirm_password_for_signup" placeholder=" Confirm Password" />
+              <div id ="signuppassword-error" class="signuppassword-error"></div>
             </div>
             <div class="input-field">
                 <i class="fas fa-users"></i>
@@ -84,7 +86,7 @@
           </form>
         </div>
       </div>
-
+      
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
@@ -109,16 +111,17 @@
         </div>
       </div>
     </div>
+    
+  <script src="connection/signup.js"></script>
 
-  <script src="collection/signup.js"></script>
-  <script src="collection/login.js"></script>
-  <script src="collection/adminlogin.js"></script>
+  <script src="connection/login.js"></script>
+
+  <script src="connection/adminlogin.js"></script>
+
   <script src="verification/email.js"></script>
+  <script src="verification/password.js"></script>
 
+  <script src="style.js"></script>
 
-    <script src="style.js"></script>
   </body>
 </html>
-
-
-
