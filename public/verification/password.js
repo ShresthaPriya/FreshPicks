@@ -7,25 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
 
-        // Check if password contains at least one capital letter and one number
-        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-        if (!passwordRegex.test(password)) {
-            signupErrorElement.textContent = 'Password must contain at least one capital letter and one number, and be at least 6 characters long';
+        // Reset error message if both fields are empty
+        if (password === '' && confirmPassword === '') {
+            signupErrorElement.textContent = '';
             return false;
         }
 
-        // Clear error message if passwords match
-        if (password === confirmPassword) {
-            signupErrorElement.textContent = '';
-            return true;
+        // Check if password contains at least one capital letter and one number
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            signupErrorElement.textContent = 'Password must contain at least one capital letter and one number, and 6 characters long';
+            return false;
         }
 
-        // Check if confirm password field is not empty before showing error message
-        if (confirmPassword !== '') {
+        // Check if passwords match
+        if (password !== confirmPassword) {
             signupErrorElement.textContent = 'Passwords do not match';
             return false;
         }
 
+        // Clear error message if both fields are valid
+        signupErrorElement.textContent = '';
         return true;
     }
 
