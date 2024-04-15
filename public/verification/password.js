@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if password contains at least one capital letter and one number
         const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
         if (!passwordRegex.test(password)) {
-            signupErrorElement.textContent = 'Password must contain at least one capital letter and one number, and be 6 characters long';
+            signupErrorElement.textContent = 'Password must contain one capital letter, one number, and 6 characters long';
             return false;
         }
 
