@@ -13,22 +13,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const address = document.getElementById('address_for_signup').value;
     const role = roleSelect.value; // Get the selected role from the dropdown
 
-    // Client-side validation for password and confirm password fields
-    if (password !== confirmPassword) {
-      // Display error message
-      const signupErrorElement = document.getElementById('signup-error');
-      signupErrorElement.textContent = 'Passwords do not match';
-      return;
-    }
-
-    // Client-side validation for email format
-    if (!validateEmailFormat(email)) {
-      // Display error message
-      const signupErrorElement = document.getElementById('signup-error');
-      signupErrorElement.textContent = 'Please enter a valid email address';
-      return; // Prevent further execution
-    }
-
     try {
       // Set the action attribute of the form based on the selected role
       signupForm.action = `/api/${role}`;
@@ -59,10 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('Error signing up user:', signupError.message);
       // Handle signup error
     }
+    const loginErrorElement = document.getElementById('signup-error');
+    loginErrorElement.textContent = 'Invalid username or password';
   });
-
-  // Function to validate email format
-  function validateEmailFormat(email) {
-    return /^([a-zA-Z0-9_\-]+)@([a-zA-Z_\-]+)\.([a-zA-Z]{2,5})$/.test(email);
-  }
 });
