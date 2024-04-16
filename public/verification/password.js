@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmPasswordInput.addEventListener('input', validatePasswordMatch);
 
     // Event listener for form submission
-    document.querySelector('.sign-up-form').addEventListener('submit', (event) => {
+    document.querySelector('.sign-up-form').addEventListener('blur', (event) => {
         if (!validatePasswordFormat() || !validatePasswordMatch()) {
             event.preventDefault(); // Prevent form submission if validation fails
         }

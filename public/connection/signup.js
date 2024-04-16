@@ -13,11 +13,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const address = document.getElementById('address_for_signup').value;
     const role = roleSelect.value; // Get the selected role from the dropdown
     
-      // Check if password format error is displayed
-      const passwordErrorElement = document.getElementById('password-error');
-      if (passwordErrorElement.textContent !== '') {
-          throw new Error('Password format error'); // Throw error and prevent signup
-      }
+    // Check if any field is empty
+    if(username ==='' || email ==='' || password ==='' || confirmPassword ==='' || address ===''){
+      const signupError = document.getElementById('signup-error');
+      signupError.innerText = 'Please fill in all the fields!!!!';
+      return;
+    } else {
+      const signupError = document.getElementById('signup-error');
+      signupError.innerText = ''; // Clear the error message if all fields are filled
+    }
+
+    // Check if password format error is displayed
+    const passwordErrorElement = document.getElementById('password-error');
+    if (passwordErrorElement.textContent !== '') {
+        throw new Error('Password format error'); // Throw error and prevent signup
+    }
 
     // Validate email format
     if (!validateEmail(email)) {
@@ -56,5 +66,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('Error signing up user:', signupError.message);
       // Handle signup error
     }
+  });
+
+  // Clear error message when user starts typing in any field
+  const inputFields = document.querySelectorAll('.sign-up-form input');
+  inputFields.forEach(inputField => {
+    inputField.addEventListener('input', () => {
+      const signupError = document.getElementById('signup-error');
+      signupError.innerText = ''; // Clear the error message
+    });
   });
 });
