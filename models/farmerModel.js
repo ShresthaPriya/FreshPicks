@@ -4,7 +4,10 @@ const farmerSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+<<<<<<< HEAD
         
+=======
+>>>>>>> c6f0763fdc806b8054428c4870b6b486ac60b96e
     },
     email: {
         type: String,
