@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const address = document.getElementById('address_for_signup').value;
     const role = roleSelect.value; // Get the selected role from the dropdown
 
+    // Validate email format
+    if (!validateEmail(email)) {
+      const emailerror = document.getElementById("errormsg_for_email");
+      emailerror.innerText = "Please enter a valid email address";
+      return; // Prevent form submission if email format is incorrect
+    }
+
     try {
       // Set the action attribute of the form based on the selected role
       signupForm.action = `/api/${role}`;
@@ -43,7 +50,5 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('Error signing up user:', signupError.message);
       // Handle signup error
     }
-    const loginErrorElement = document.getElementById('signup-error');
-    loginErrorElement.textContent = 'Invalid username or password';
   });
 });

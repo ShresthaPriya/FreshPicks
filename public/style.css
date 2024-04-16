@@ -475,3 +475,9 @@ form.sign-in-form {
   margin-top: -1px; /* Adjust this value as needed to position it above the input field */
   grid-column: 1 / -1; /* Span across all columns */
 }
+
+a {
+  text-decoration: none; /* Remove underline */
+  color: #e56123; /* Set text color */
+
+}
