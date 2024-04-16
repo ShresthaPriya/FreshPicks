@@ -2,31 +2,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password_for_signup');
     const confirmPasswordInput = document.getElementById('confirm_password_for_signup');
     const signupErrorElement = document.getElementById('signuppassword-error');
+    const passwordErrorElement = document.getElementById('password-error'); 
 
     function validatePasswordFormat() {
-        const password = passwordInput.value.trim();
+        const password = passwordInput.value;
 
         // Reset error message if password is empty
         if (password === '') {
-            signupErrorElement.textContent = '';
+            passwordErrorElement.textContent = '';
             return false;
         }
 
-        // Check if password contains at least one capital letter, one number, and is at least 6 characters long
+        // Check if password contains at least one capital letter and one number
         const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
         if (!passwordRegex.test(password)) {
-            signupErrorElement.textContent = 'Password must contain one capital letter, one number, and be at least 6 characters long';
+            passwordErrorElement.textContent = 'Password must contain one capital letter, one number, and 6 characters long';
             return false;
         }
 
         // Clear error message if password format is correct
-        signupErrorElement.textContent = '';
+        passwordErrorElement.textContent = '';
         return true;
     }
 
     function validatePasswordMatch() {
-        const password = passwordInput.value.trim();
-        const confirmPassword = confirmPasswordInput.value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
 
         // Reset error message if both fields are empty
         if (password === '' && confirmPassword === '') {

@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const confirmPassword = document.getElementById('confirm_password_for_signup').value;
     const address = document.getElementById('address_for_signup').value;
     const role = roleSelect.value; // Get the selected role from the dropdown
+    
+      // Check if password format error is displayed
+      const passwordErrorElement = document.getElementById('password-error');
+      if (passwordErrorElement.textContent !== '') {
+          throw new Error('Password format error'); // Throw error and prevent signup
+      }
 
     // Validate email format
     if (!validateEmail(email)) {
