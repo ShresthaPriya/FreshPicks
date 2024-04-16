@@ -502,6 +502,7 @@ a {
   grid-column: 1 / -1; /* Span across all columns */
 }
 
-#signup-error{
+#signup-errors{
   color: red;
+  font-weight: 500;
 }

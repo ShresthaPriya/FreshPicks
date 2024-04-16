@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Check if any field is empty
     if(username ==='' || email ==='' || password ==='' || confirmPassword ==='' || address ===''){
-      const signupError = document.getElementById('signup-error');
-      signupError.innerText = 'Please fill in all the fields!!!!';
+      const signupError = document.getElementById('signup-errors');
+      signupError.innerText = 'Please fill in all the fields!!!';
       return;
     } else {
-      const signupError = document.getElementById('signup-error');
+      const signupError = document.getElementById('signup-errors');
       signupError.innerText = ''; // Clear the error message if all fields are filled
     }
 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const inputFields = document.querySelectorAll('.sign-up-form input');
   inputFields.forEach(inputField => {
     inputField.addEventListener('input', () => {
-      const signupError = document.getElementById('signup-error');
+      const signupError = document.getElementById('signup-errors');
       signupError.innerText = ''; // Clear the error message
     });
   });
