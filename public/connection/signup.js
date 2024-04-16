@@ -12,14 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       const confirmPassword = document.getElementById('confirm_password_for_signup').value;
       const address = document.getElementById('address_for_signup').value;
       const role = roleSelect.value; // Get the selected role from the dropdown
-  
-       // Client-side validation for password and confirm password fields
-       if (password !== confirmPassword) {
-        // Display error message
-        const signupErrorElement = document.getElementById('signup-error');
-        signupErrorElement.textContent = 'Passwords do not match';
-        return; // Prevent further execution
-    }
 
       try {
         // Set the action attribute of the form based on the selected role
