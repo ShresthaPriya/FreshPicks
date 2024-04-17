@@ -11,9 +11,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const role = roleSelect.value; // Get the selected role from the dropdown
 
     if (!validateEmail(email)) {
-      const emailerror = document.getElementById("errormsg_for_email");
+      const emailerror = document.getElementById("email-error");
       emailerror.innerText = "Please enter a valid email address";
       return; // Prevent form submission if email format is incorrect
+    } else {
+      const emailerror = document.getElementById("email-error");
+      emailerror.innerText = ""; // Clear the error message if email format is correct
     }
 
     try {
@@ -33,16 +36,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       const loginUserData = await loginResponse.json();
       console.log('User logged in successfully:', loginUserData);
 
-      
-
       // Redirect to appropriate home page based on role
       if (role === 'farmer') {
         window.location.href = "FarmerHomepage.html";
       } else if (role === 'customer') {
         window.location.href = "user.html";
       }
+
       // Pop-up message after successful login and redirection
-        window.onload = function() {
+      window.onload = function() {
         alert('Logged in successfully');
       };
     } catch (loginError) {
