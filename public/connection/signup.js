@@ -32,10 +32,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Show error message if passwords do not match and confirm password is not empty
     if (password !== confirmPassword && confirmPassword !== '') {
         const signupError = document.getElementById('signup-errors');
-        signupError.innerText = 'Passwords do not match';
         return; // Prevent signup if passwords don't match
     }
-
   
       // Validate email format
       if (!validateEmail(email)) {
