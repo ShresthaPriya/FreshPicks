@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event listener for password input
-    passwordInput.addEventListener('input', validatePasswordFormat);
+    passwordInput.addEventListener('blur', validatePasswordFormat);
 
     // Event listener for confirm password input
-    confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+    confirmPasswordInput.addEventListener('blur', validatePasswordMatch);
 
     // Event listener for form submission
     document.querySelector('.sign-up-form').addEventListener('blur', (event) => {
