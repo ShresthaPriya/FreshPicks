@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const loginResponse = await fetch(`/api/${role}/login`, { // Dynamically set endpoint based on role
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' // Corrected 'application/json' header
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password })
       });
