@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-          'Content-Type': 'application/json' // Corrected 'application/json' header
         },
         body: JSON.stringify({ email, password })
       });
