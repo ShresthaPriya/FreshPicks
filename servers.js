@@ -18,6 +18,11 @@ const detele_customer = require('./DeleteRoutes/deleteCustomer.js');
 const detele_farmer = require('./DeleteRoutes/deletefarmer.js');
 
 
+//For update operations
+const UpdateCus = require('./UpdateRoutes/UpcCustomer.js')
+const Updatefar = require('./UpdateRoutes/upfarmer.js')
+
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -52,6 +57,10 @@ app.use('/api',Farmer_name);
 app.use('/api',detele_customer);
 app.use('/api',detele_farmer);
 
+
+//For update Operation
+app.use('/api',UpdateCus);
+app.use('/api',Updatefar);
 
 
 // Start the server

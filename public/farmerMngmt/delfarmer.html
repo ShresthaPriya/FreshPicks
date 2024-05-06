@@ -10,18 +10,16 @@
         form {
             position: absolute;
             /* Position the form */
-            top: 50%;
+            top: 53%;
             /* Align the top of the form to the vertical center */
             left: 50%;
             /* Align the left side of the form to the horizontal center */
             transform: translate(-50%, -50%);
             /* Move the form back by half of its own width and height */
-            width: 60%;
+            width: 55%;
             /* Set the width of the form */
             border: 2px solid #ccc;
-            /* Add a border */
-            padding: 20px;
-            /* Add padding */
+
             border-radius: 10px;
             /* Add border radius for rounded corners */
             background-color: #f9f9f9;
@@ -89,14 +87,16 @@
         .close-btn {
             position: absolute;
             top: 70px;
-            right: 250px;
+            right: 150px;
             cursor: pointer;
         }
 
         /* Style the table body to scroll */
         #customerTable tbody {
-            height: 300px; /* Set the height of the table body */
-            overflow-y: auto; /* Enable vertical scrolling */
+            height: 300px;
+            /* Set the height of the table body */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
         }
     </style>
 </head>
@@ -123,13 +123,13 @@
     </form>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const deleteCustomer = async (customerId) => {
+            const deleteFarmer = async (farmerId) => {
                 try {
                     const confirmed = confirm('Are you sure you want to delete this user?');
                     if (!confirmed) {
                         return; // User cancelled, do nothing
                     }
-                    const response = await fetch(`/api/deletefarmer/${customerId}`, {
+                    const response = await fetch(`/api/deletefarmer/${farmerId}`, {
                         method: 'DELETE',
                     });
 
@@ -142,6 +142,16 @@
                 }
             };
 
+
+            // Redirect to update.html when the "Update" button is clicked
+            const redirectToUpdatePage = (farmerId, name, address, email, password) => {
+                window.location.href =
+                    `updatefar.html?id=${farmerId}&name=${encodeURIComponent(name)}&address=${encodeURIComponent(address)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+                    // console.log(name, address, email, password,farmerId);
+            };
+
+
+
             // Fetch customer data
             fetch('/api/getfarmer')
                 .then(response => {
@@ -152,28 +162,46 @@
                 })
                 .then(data => {
                     // Populate the customer table
-                    data.forEach(customer => {
+                    // Populate the customer table
+                    data.forEach(farmer => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                            <td>${customer._id}</td>
-                            <td>${customer.username}</td>
-                            <td>${customer.address}</td>
-                            <td>${customer.email}</td>
-                            <td>${customer.password}</td>
-                            <td>
-                                <button class="delete-btn" data-id="${customer._id}">Delete</button>
-                                <button class="update-btn">Update</button>
-                            </td>
-                        `;
+        <td>${farmer._id}</td>
+        <td>${farmer.username}</td>
+        <td>${farmer.address}</td>
+        <td>${farmer.email}</td>
+        <td>${farmer.password}</td>
+        <td>
+            <button class="delete-btn" data-id="${farmer._id}">Delete</button>
+            <button class="update-btn" data-id="${farmer._id}" data-name="${farmer.username}" data-address="${farmer.address}" data-email="${farmer.email}" data-password="${farmer.password}">Update</button>
+        </td>
+    `;
                         document.querySelector('#customerTable tbody').appendChild(row);
                     });
+
 
                     // Add event listeners to delete buttons
                     const deleteButtons = document.querySelectorAll('.delete-btn');
                     deleteButtons.forEach(button => {
                         button.addEventListener('click', () => {
-                            const customerId = button.getAttribute('data-id');
-                            deleteCustomer(customerId);
+                            const farmerId = button.getAttribute('data-id');
+                            deleteFarmer(farmerId);
+                        });
+                    });
+
+
+
+                    // Add event listener to update buttons
+                    const updateButtons = document.querySelectorAll('.update-btn');
+                    updateButtons.forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            event.preventDefault(); // Prevent default button behavior
+                            const farmerId = button.getAttribute('data-id');
+                            const name = button.getAttribute('data-name');
+                            const address = button.getAttribute('data-address');
+                            const email = button.getAttribute('data-email');
+                            const password = button.getAttribute('data-password');
+                            redirectToUpdatePage(farmerId, name, address, email, password);
                         });
                     });
                 })
