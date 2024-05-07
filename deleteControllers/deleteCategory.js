@@ -15,23 +15,23 @@
 
 // // module.exports = deleteCategory;
 
-// const Category = require('../models/Category');  // Adjust the path as necessary
+const Category = require('../models/Category');  // Adjust the path as necessary
 
-// async function deleteCategory(categoryId) {
-//     if (!categoryId.match(/^[0-9a-fA-F]{24}$/)) {
-//         throw new Error('Invalid ObjectId format');
-//     }
+async function deleteCategory(categoryId) {
+    if (!categoryId.match(/^[0-9a-fA-F]{24}$/)) {
+        throw new Error('Invalid ObjectId format');
+    }
 
-//     try {
-//         const result = await Category.findByIdAndDelete(categoryId);
-//         if (!result) {
-//             throw new Error('Category not found');
-//         }
-//         return { message: 'Category successfully deleted', categoryId: result._id };
-//     } catch (error) {
-//         throw error;  // Propagate errors back to the caller
-//     }
-// }
+    try {
+        const result = await Category.findByIdAndDelete(categoryId);
+        if (!result) {
+            throw new Error('Category not found');
+        }
+        return { message: 'Category successfully deleted', categoryId: result._id };
+    } catch (error) {
+        throw error;  // Propagate errors back to the caller
+    }
+}
 
-// module.exports = { deleteCategory };
+module.exports = { deleteCategory };
 
