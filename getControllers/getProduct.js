@@ -1,27 +1,34 @@
-const productInfo = require("../models/productModel");
+// const Product = require('../models/productModel'); // Import the Product model
 
+// // Controller function to fetch all products
 // const getProduct = async (req, res) => {
 //     try {
-//         const customers = await customer_name.find();
-//         res.status(200).json(customers);
+//         const products = await Product.find(); // Fetch all products from the database
+//         res.status(200).json(products); // Send products as JSON response
 //     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//         console.log(error);
+//         console.error(error);
+//         res.status(500).json({ error: 'Server Error' });
 //     }
-// }
+// };
 
-Product.find({}, (err, foundProducts) => {
-    if (err) {
-        console.log(err);
-    } else {
-        // Group products by category
-        const groupedProducts = foundProducts.reduce((acc, product) => {
-            acc[product.category] = acc[product.category] || [];
-            acc[product.category].push(product);
-            return acc;
-        }, {});
+// module.exports = getProduct;
+const express = require('express');
+const router = express.Router();
+const Product = require('../models/productModel'); // Import the Product model
 
-        res.render('product.html', { groupedProducts: groupedProducts });
+// Controller function to fetch all products
+const getProduct = async (req, res) => {
+    try {
+        const products = await Product.find(); // Fetch all products from the database
+        res.status(200).json(products); // Send products as JSON response
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server Error' });
     }
-});
-module.exports = getproduct;
+};
+
+router.get('/getproducts', getProduct); // Configure route to fetch products
+
+module.exports = router;
+
+

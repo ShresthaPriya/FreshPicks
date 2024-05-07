@@ -1,6 +1,6 @@
-const Category = require('../models/categoryModel'); 
+const Category = require('../models/categoryModel'); // Import the Category model
 
-// Controller function to update a customer by ID
+// Controller function to update a category by ID
 const updateCategory = async (req, res) => {
   const categoryId = req.params.categoryId;
   const updatedData = req.body;

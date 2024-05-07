@@ -1,7 +1,8 @@
-const express  = require('express');
+const express = require('express');
 const router = express.Router();
-const productInfo = require("../getControllers/getProduct");
+const productController = require('../getControllers/getProduct'); // Import the getProduct controller
 
+router.get('/getproducts', productController); // Change the route to fetch products
 
-router.get('/getproduct',productInfo);
 module.exports = router;
+
