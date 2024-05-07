@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   const addToWishlistButtons = document.querySelectorAll('.product-btn');
-  const wishlistPanel = document.querySelector('[data-side-panel="whishlist"] .panel-list');
-  const wishlistSubtotal = document.querySelector('[data-side-panel="whishlist"] .subtotal-value');
+  const wishlistPanel = document.querySelector('[data-side-panel="whishlist"]');
+  const wishlistHeader = document.querySelector('.header-action-btn[data-panel-btn="whishlist"]');
+  const wishlistBadge = wishlistHeader.querySelector('.btn-badge');
 
   // Load wishlist items from local storage on page load
   loadWishlist();
@@ -17,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Update the subtotal
           updateSubtotal();
+
+          // Update wishlist badge count
+          updateBadgeCount();
       });
   });
 
@@ -27,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const itemToRemove = event.target.closest('.panel-item');
           removeFromWishlist(itemToRemove);
           updateSubtotal();
+          updateBadgeCount();
       }
   });
 
@@ -51,12 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
           subtotalValue += parseFloat(itemValue.innerText.replace('Rs ', ''));
       });
 
-      wishlistSubtotal.innerText = 'Rs ' + subtotalValue.toFixed(2);
-      wishlistSubtotal.setAttribute('value', subtotalValue.toFixed(2));
+      wishlistPanel.querySelector('.subtotal-value').innerText = 'Rs ' + subtotalValue.toFixed(2);
   }
 
   function renderWishlist() {
-      wishlistPanel.innerHTML = '';
+      wishlistPanel.querySelector('.panel-list').innerHTML = '';
       const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
       wishlistItems.forEach(function(item) {
           const newItem = document.createElement('li');
@@ -72,12 +76,18 @@ document.addEventListener('DOMContentLoaded', function() {
                   </button>
               </a>
           `;
-          wishlistPanel.appendChild(newItem);
+          wishlistPanel.querySelector('.panel-list').appendChild(newItem);
       });
   }
 
   function loadWishlist() {
       renderWishlist();
       updateSubtotal();
+      updateBadgeCount();
   }
+
+  function updateBadgeCount() {
+      const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+      wishlistBadge.innerText = wishlistItems.length.toString().padStart(2, '0');
+  } 
 });
