@@ -2,7 +2,7 @@ document.getElementById('addProductForm').addEventListener('submit', function(ev
     event.preventDefault();
     const formData = new FormData(this);
     // Here you would typically send the formData to the server using fetch or XMLHttpRequest
-    fetch('', {
+    fetch('/api/add_product', {
       method: 'POST',
       body: formData
     })
