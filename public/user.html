@@ -50,20 +50,22 @@
           <ul class="navbar-list">
 
             <li>
-              <a href="./index.html" class="navbar-link">Home</a>
+              <a href="./user.html" class="navbar-link">Home</a>
             </li>
 
             <li>
-              <a href="./about.html" class="navbar-link">About</a>
+              <a href="#about-us" class="navbar-link">About</a>
             </li>
 
             <li>
-              <a href="./shop.html" class="navbar-link">Products</a>
+              <a href="#organic-products" class="navbar-link">Products</a>
             </li>
 
             <li>
-              <a href="./contact.html" class="navbar-link">Contact</a>
-            </li>
+              <a href="#footers" class="navbar-link" onclick="scrollToSection('footers')">Contact</a>
+          </li>
+          
+          
 
           </ul>
 
@@ -91,13 +93,13 @@
           <button class="header-action-btn" aria-label="Open whishlist" data-panel-btn="whishlist">
             <ion-icon name="heart-outline"></ion-icon>
 
-            <data class="btn-badge" value=""></data>
+            <data class="btn-badge" value="3">03</data>
           </button>
 
           <button class="header-action-btn" aria-label="Open shopping cart" data-panel-btn="cart">
             <ion-icon name="basket-outline"></ion-icon>
 
-            <data class="btn-badge" value=""></data>
+            <data class="btn-badge" value="2">02</data>
           </button>
 
         </div>
@@ -125,43 +127,23 @@
 
       <ul class="panel-list">
 
-        <!-- <li class="panel-item">
-          <a href="./product-details.html" class="panel-card"> -->
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
 
-            <!-- <figure class="item-banner">
+            <figure class="item-banner">
               <img src="./user/onion.png" width="46" height="46" loading="lazy"
                 alt="Onion">
-            </figure> -->
-
-            <!-- <div>
-              <p class="item-title">Onion</p>
-
-              <span class="item-value">Rs 100</span>
-            </div> -->
-
-            <!-- <button class="item-close-btn" aria-label="Remove item">
-              <ion-icon name="close-outline"></ion-icon>
-            </button> -->
-
-          </a>
-        </li>
-
-        <!-- <li class="panel-item">
-          <a href="./product-details.html" class="panel-card"> -->
-
-            <!-- <figure class="item-banner">
-              <img src="./user/orange.png" width="46" height="46" loading="lazy" alt="Orange">
             </figure>
 
             <div>
-              <p class="item-title">Orange</p>
+              <p class="item-title">Onion</p>
 
               <span class="item-value">Rs 100</span>
-            </div> -->
+            </div>
 
-            <!-- <button class="item-close-btn" aria-label="Remove item">
+            <button class="item-close-btn" aria-label="Remove item">
               <ion-icon name="close-outline"></ion-icon>
-            </button> -->
+            </button>
 
           </a>
         </li>
@@ -169,7 +151,27 @@
         <li class="panel-item">
           <a href="./product-details.html" class="panel-card">
 
-            <!-- <figure class="item-banner">
+            <figure class="item-banner">
+              <img src="./user/orange.png" width="46" height="46" loading="lazy" alt="Orange">
+            </figure>
+
+            <div>
+              <p class="item-title">Orange</p>
+
+              <span class="item-value">Rs 100</span>
+            </div>
+
+            <button class="item-close-btn" aria-label="Remove item">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+          </a>
+        </li>
+
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
+
+            <figure class="item-banner">
               <img src="./user/strawberry.png" width="46" height="46" loading="lazy"
                 alt="Strawberry">
             </figure>
@@ -178,11 +180,11 @@
               <p class="item-title">Strawberry</p>
 
               <span class="item-value">Rs 100</span>
-            </div> -->
+            </div>
 
-            <!-- <button class="item-close-btn" aria-label="Remove item">
+            <button class="item-close-btn" aria-label="Remove item">
               <ion-icon name="close-outline"></ion-icon>
-            </button> -->
+            </button>
 
           </a>
         </li>
@@ -192,7 +194,7 @@
       <div class="subtotal">
         <p class="subtotal-text">Subtotal:</p>
 
-        <data class="subtotal-value" value="215.14"></data>
+        <data class="subtotal-value" value="215.14">Rs 100</data>
       </div>
 
       <a href="./whishlist.html" class="panel-btn">View Whishlist</a>
@@ -210,7 +212,7 @@
         <li class="panel-item">
           <a href="./product-details.html" class="panel-card">
 
-            <!-- <figure class="item-banner">
+            <figure class="item-banner">
               <img src="./user/orange.png" width="46" height="46" loading="lazy"
                 alt="Orange">
             </figure>
@@ -223,7 +225,7 @@
 
             <button class="item-close-btn" aria-label="Remove item">
               <ion-icon name="close-outline"></ion-icon>
-            </button> -->
+            </button>
 
           </a>
         </li>
@@ -231,7 +233,7 @@
         <li class="panel-item">
           <a href="./product-details.html" class="panel-card">
 
-            <!-- <figure class="item-banner">
+            <figure class="item-banner">
               <img src="./user/strawberry.png" width="46" height="46" loading="lazy" alt="Strawberry">
             </figure>
 
@@ -243,7 +245,7 @@
 
             <button class="item-close-btn" aria-label="Remove item">
               <ion-icon name="close-outline"></ion-icon>
-            </button> -->
+            </button>
 
           </a>
         </li>
@@ -284,11 +286,11 @@
                 Local Farmer's Market at Your Fingertips!           
              </p>
 
-            <a href="./shop.html" class="btn btn-primary">
+             <a href="#organic-products" class="btn btn-primary" onclick="scrollToSection('organic-products')">
               <span class="span">Shop Now</span>
-
               <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-            </a>
+           </a>
+           
 
           </div>
 
@@ -351,7 +353,7 @@
         - #PRODUCT
       -->
 
-      <section class="section product">
+      <section id="organic-products" class="section product">
         <div class="container">
 
           <p class="section-subtitle"> -- Organic Products --</p>
@@ -1135,55 +1137,26 @@
         </div>
       </section>
 
-
-
-
-
-      
-
-
-
-
-      <!-- Pathao      -->
-
-      <section class="section newsletter">
-        <div class="container">
-
-          <div class="newsletter-card">
-
-            <p class="section-subtitle"> -- Subscribe to Pathao --</p>
-
-            <h2 class="h2 section-title">Sign Up To Pathao & Get <span class="span">20% Off.</span></h2>
-
-            <form action="" class="newsletter-form">
-
-              <input type="email" name="email" placeholder="Enter your email" required class="input-email">
-
-              <button type="submit" class="btn btn-primary">
-                <span>Sign Up</span>
-
-                <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-              </button>
-
-            </form>
-
-          </div>
-
-        </div>
-      </section>
-
     </article>
   </main>
 
 
 
-
+    <!-- About Us Section -->
+    <section id="about-us" class="section">
+      <div class="container">
+          <h2 class="h2 section-title">About Us</h2>
+          <p>Welcome to FreshPicks, your local farmers market connecting you with fresh, locally grown produce and artisanal products.</p>
+          <p>At FreshPicks, we are committed to supporting sustainable agriculture practices and fostering a vibrant local economy. Our mission is to provide a platform for local farmers and artisans to sell their products directly to the community, creating a sustainable and thriving local food system.</p>
+          <p>We believe in promoting healthy eating habits, supporting small-scale farmers and producers, and building connections between producers and consumers.</p>
+      </div>
+  </section>
 
   <!-- 
     - #FOOTER
   -->
 
-  <footer class="footer">
+  <footer id="footers" class="footer">
 
     <div class="footer-top">
       <div class="container">
@@ -1226,33 +1199,6 @@
 
         </div>
 
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Company</p>
-          </li>
-
-          <li>
-            <a href="./about.html" class="footer-link">About Us</a>
-          </li>
-
-          <li>
-            <a href="./shop.html" class="footer-link">Shop</a>
-          </li>
-
-          <li>
-            <a href="./blog.html" class="footer-link">Blog</a>
-          </li>
-
-          <li>
-            <a href="./shop.html" class="footer-link">Product</a>
-          </li>
-
-          <li>
-            <a href="./contact.html" class="footer-link">Contact Us</a>
-          </li>
-
-        </ul>
 
         <ul class="footer-list">
 
@@ -1315,8 +1261,6 @@
 
 
 
-
-
   <!-- 
     - #BACK TO TOP
   -->
@@ -1324,6 +1268,11 @@
   <a href="#top" class="back-to-top" aria-label="Back to Top" data-back-top-btn>
     <ion-icon name="arrow-up-outline"></ion-icon>
   </a>
+
+
+
+
+
   <!-- 
     - custom js link
   -->
@@ -1334,10 +1283,14 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="WishList.js"></script>
-  <script src="Search.js"></script>
-  <script src="addtocart.js"></script>
-
+  <!-- <script>
+    function scrollToSection(sectionId) {
+       const section = document.getElementById(sectionId);
+       if (section) {
+          // Smooth scrolling to the section
+          section.scrollIntoView({ behavior: 'smooth' });
+       }
+    }
+ </script> -->
 </body>
-
 </html>
