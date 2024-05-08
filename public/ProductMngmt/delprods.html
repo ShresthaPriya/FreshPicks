@@ -114,9 +114,9 @@
                     <td>ID</td>
                     <td>Product Name</td>
                     <td>Price</td>
-                    <td>Image</td>
+                    <!-- <td>Image</td> -->
                     <td>Description</td>
-                    <td>Category</td>
+                    <!-- <td>Category</td> -->
                     <td>Actions</td>
                 </tr>
             </thead>
@@ -127,7 +127,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('/api/getproducts');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -140,9 +140,9 @@
                         <td>${product._id}</td>
                         <td>${product.productName}</td>
                         <td>${product.price}</td>
-                        <td>${product.image}</td>
+                        
                         <td>${product.description}</td>
-                        <td>${product.category}</td>
+                        
                         <td>
                             <button class="delete-btn" data-id="${product._id}">Delete</button>
                             <button class="update-btn">Update</button>
