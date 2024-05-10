@@ -114,9 +114,9 @@
                     if (!response.ok) {
                         throw new Error('Failed to add product');
                     }
-
-                    const product = await response.json();
-                    console.log('Product added:', product);
+                    window.location.href = './product.html';
+                    // const product = await response.json();
+                    // console.log('Product added:', product);
                     // Optionally, you can redirect or show a success message here
                 } catch (error) {
                     console.error('Error adding product:', error);
