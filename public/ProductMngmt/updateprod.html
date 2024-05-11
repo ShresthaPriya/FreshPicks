@@ -127,7 +127,7 @@ const fillFormWithProductDetails = () => {
             // Extract product ID from the query parameters
             const productId = getQueryParams().id;
             console.log(productId);
-            const response = await fetch(`/api/updateproduct/${productId}`, {
+            const response = await fetch(`/api/uppro/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -140,7 +140,7 @@ const fillFormWithProductDetails = () => {
             }
 
             alert('Details of Product updated successfully!');
-            window.location.href = "products.html";
+            window.location.href = "delprods.html";
             // Optionally, redirect to another page or perform any other action after successful update
         } catch (error) {
             console.error('Error updating product:', error);

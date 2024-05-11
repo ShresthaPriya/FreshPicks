@@ -118,7 +118,7 @@ const fillFormWithCustomerDetails = () => {
         event.preventDefault(); // Prevent default form submission
         
         // Extract customer details from the form
-        const name = document.getElementById('name').value;
+        const username = document.getElementById('name').value;
         const address = document.getElementById('address').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;  
@@ -132,7 +132,7 @@ const fillFormWithCustomerDetails = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, address, email, password })
+                body: JSON.stringify({ username, address, email, password })
             });
 
             if (!response.ok) {

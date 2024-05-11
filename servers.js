@@ -21,13 +21,15 @@ const productController = require('./GetRoutes/GetProduct');
 //For delete operations
 const detele_customer = require('./DeleteRoutes/deleteCustomer.js');
 const detele_farmer = require('./DeleteRoutes/deletefarmer.js');
-const detele_category = require('./DeleteRoutes/deleteCategory.js');
+const detele_category = require('./DeleteRoutes/deletecategory.js');
+const detele_products = require('./DeleteRoutes/deleteproduct.js');
 
 
 //For update operations
 const UpdateCus = require('./UpdateRoutes/UpcCustomer.js')
 const Updatefar = require('./UpdateRoutes/upfarmer.js')
 const UpdateCat = require('./UpdateRoutes/upCategory.js')
+const UpdatePro = require('./UpdateRoutes/upPro.js')
 
 
 dotenv.config();
@@ -69,12 +71,14 @@ app.use('/api',productController);
 app.use('/api',detele_customer);
 app.use('/api',detele_farmer);
 app.use('/api', detele_category);
+app.use('/api', detele_products);
 
 
 //For update Operation
 app.use('/api',UpdateCus);
 app.use('/api',Updatefar);
 app.use('/api',UpdateCat);
+app.use('/api',UpdatePro);
 
 
 // Start the server

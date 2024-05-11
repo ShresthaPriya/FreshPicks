@@ -70,37 +70,28 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOMContentLoaded event fired');
+       document.addEventListener('DOMContentLoaded', function () {
+    // Function to extract query parameters from URL
+    const getQueryParams = () => {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const queryParams = queryString.split('&');
+        queryParams.forEach(param => {
+            const pair = param.split('=');
+            params[pair[0]] = decodeURIComponent(pair[1]);
+        });
+        return params;
+    };
 
-            // Function to extract query parameters from URL
-            const getQueryParams = () => {
-                const params = {};
-                const queryString = window.location.search.substring(1);
-                const queryParams = queryString.split('&');
-                queryParams.forEach(param => {
-                    const pair = param.split('=');
-                    params[pair[0]] = decodeURIComponent(pair[1]);
-                });
-                return params;
-            };
+    // Function to fill form fields with category details
+    const fillFormWithCategoryDetails = () => {
+        const queryParams = getQueryParams();
+        const categoryId = queryParams.id || '';
+        document.getElementById('categoryId').innerText = `Selected Category ID: ${categoryId}`;
+    };
 
-            // Function to fill form fields with customer details
-            // Function to fill form fields with customer details
-            // Function to fill form fields with category details
-            const fillFormWithCategoryDetails = () => {
-                const queryParams = getQueryParams();
-                console.log('Query Parameters:', queryParams); // Log query parameters to console
-                const categoryId = queryParams.id || '';
-                console.log('Category ID:', categoryId); // Log category ID to console
-                document.getElementById('name').value = queryParams.name || '';
-                document.getElementById('categoryId').innerText = `Selected Category ID: ${categoryId}`;
-            };
-
-
-
-            // Call the function to fill the form when the page loads
-            fillFormWithCategoryrDetails();
+    // Call the function to fill the form when the page loads
+    fillFormWithCategoryDetails();
 
             // Function to handle form submission
             const updateCategopry = async (event) => {
