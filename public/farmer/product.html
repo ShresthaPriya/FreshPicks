@@ -35,10 +35,35 @@
             height: auto;
             margin-bottom: 10px;
         }
+        .manage-button-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+        }
+       .manage-button {
+            background-color: #e56123;
+            color: white;
+            border-color: #e56123;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .manage-button:hover {
+        background-color: white;
+        color: #e56123;
+        border-color: #e56123;
+        }
     </style>
 </head>
 <body>
-    <h1>Category Name</h1>
+    
+    <div id="headerContainer" style="position: relative;">
+        <h1>Product Details</h1>
+        <div class="manage-button-container">
+            <button class="manage-button" id="manage-button">Manage product</button>
+        </div>
+    </div>
     <div id="productList" class="product-list">
         <!-- Product cards will be dynamically inserted here -->
     </div>
@@ -65,11 +90,11 @@
 
                         const productName = document.createElement('div');
                         productName.classList.add('product-name');
-                        productName.textContent = product.name;
+                        productName.textContent = product.productName;
 
                         const productPrice = document.createElement('div');
                         productPrice.classList.add('product-price');
-                        productPrice.textContent = `$${product.price}`;
+                        productPrice.textContent = `NRs. ${product.price}`;
 
                         const productDescription = document.createElement('div');
                         productDescription.classList.add('product-description');
@@ -87,6 +112,10 @@
                     console.error('Error fetching product data:', error);
                     // Handle error
                 });
+                 // Add event listener to the manage button
+            document.getElementById('manage-button').addEventListener('click', () => {
+                window.location.href = './delprods.html';
+            });
         });
     </script>
 </body>
