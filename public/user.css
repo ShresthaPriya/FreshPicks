@@ -856,12 +856,7 @@
   .breadcumb-link:is(:hover, :focus) { color: var(--emerald); }
   
   
-  
-  
-  
-  /*-----------------------------------*\
-    #MEDIA QUERIES
-  \*-----------------------------------*/
+
   
   /**
    * responsive for larger than 480px screen
