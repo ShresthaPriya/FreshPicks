@@ -55,19 +55,15 @@
             </li>
 
             <li>
-              <a href="./about.html" class="navbar-link">About</a>
-            </li>
-
-            <li>
               <a href="./farmer/product.html" class="navbar-link">Products</a>
             </li>
 
             <li>
-              <a href="./contact.html" class="navbar-link">Contact</a>
+              <a href="#footer" class="navbar-link">Contact</a>
             </li>
-
+            
             <li>
-              <a href="./index.html" class="navbar-link">Signout</a>
+              <a href="#" id="signout" class="navbar-link">Signout</a>
             </li>
 
           </ul>
@@ -171,8 +167,7 @@
     - #FOOTER
   -->
 
-  <footer class="footer">
-
+  <footer id="footer" class="footer">
     <div class="footer-top">
       <div class="container">
 
@@ -298,6 +293,22 @@
     - custom js link
   -->
   <script src="user.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const signoutButton = document.getElementById('signout');
+    signoutButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      const isConfirmed = confirm("Are you sure you want to log out?");
+
+      if (isConfirmed) {
+        window.location.href = "./index.html";
+      }
+    });
+  });
+</script>
+
 
   <!-- 
     - ionicon link

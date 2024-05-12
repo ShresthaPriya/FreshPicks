@@ -65,6 +65,9 @@
               <a href="#footers" class="navbar-link" onclick="scrollToSection('footers')">Contact</a>
           </li>
           
+          <li>
+            <a href="#" id="signout" class="navbar-link">Signout</a>
+          </li>
           
 
           </ul>
@@ -1303,14 +1306,27 @@
   -->
   <script src="user.js"></script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const signoutButton = document.getElementById('signout');
+      signoutButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        const isConfirmed = confirm("Are you sure you want to log out?");
+  
+        if (isConfirmed) {
+          window.location.href = "./index.html";
+        }
+      });
+    });
+  </script>
+
   <!-- 
     - ionicon link
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="WishList.js"></script>
-  <script src="Search.js"></script>
-  <script src="addtocart.js"></script>
+
   
 </body>
 </html>
