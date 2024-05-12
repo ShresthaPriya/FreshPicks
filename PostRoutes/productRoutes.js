@@ -1,18 +1,9 @@
-// const express = require('express');
-// const router = express.Router();
-// const createProduct = require('../PostController/Product.js');
-
-// router.post('/product', createProduct);
-
-// module.exports = router;
-
 
 const express = require('express');
 const router = express.Router();
-// const authController = require('../controllers/authController');
-const createProduct = require('../PostController/product.js');
+const createProduct = require('../PostController/product.js'); // Adjust the path as per your project structure
 
+router.post('/Products', createProduct); // Use createProduct as the route handler
 
-router.post('/Products', createProduct);
 module.exports = router;
 
