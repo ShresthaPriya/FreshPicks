@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +9,23 @@
         body {
             font-family: Arial, sans-serif;
         }
-
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-
         .heading {
             text-align: center;
         }
-
         form {
             max-width: 400px;
             margin: 0 auto;
         }
-
         label {
             display: block;
             margin-bottom: 5px;
         }
-
         input[type="text"],
         input[type="number"],
         textarea,
@@ -41,11 +35,9 @@
             margin-bottom: 10px;
             box-sizing: border-box;
         }
-
         textarea {
             height: 100px;
         }
-
         input[type="submit"] {
             background-color: #e56123;
             color: white;
@@ -57,7 +49,6 @@
             transition: background-color 0.3s, border-color 0.3s;
             /* Smooth transition */
         }
-
         input[type="submit"]:hover {
             background-color: #e56123;
             /* Same color on hover */
@@ -66,7 +57,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="heading">
         <h1>Add Product to Category</h1>
@@ -77,6 +67,10 @@
             <input type="text" id="productName" name="productName" required>
             <label for="price">Price per Kg (Rs.):</label>
             <input type="number" id="price" name="price" min="0" step="0.01" required>
+                <!-- Category input field to be populated automatically -->
+            <label for="productCategory">Category:</label>
+            <input type="text" id="productCategory" name="productCategory" required disabled>
+            
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
             <label for="image" id="image">Image:</label>
@@ -84,19 +78,23 @@
             <input type="submit" value="Add Product">
         </form>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const addProductForm = document.getElementById('addProductForm');
+            
+            // Get the category ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryId = urlParams.get('category');
+
+            // Automatically populate the category input field with category ID
+            document.getElementById('productCategory').value = categoryId;
 
             addProductForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
-
                 const productName = document.getElementById('productName').value;
                 const price = document.getElementById('price').value;
                 const description = document.getElementById('description').value;
                 // const image = document.getElementById('image').value;
-
                 try {
                     const response = await fetch('/api/Products', {
                         method: 'POST',
@@ -110,13 +108,11 @@
                             
                         })
                     });
-
                     if (!response.ok) {
                         throw new Error('Failed to add product');
                     }
                     window.location.href = './product.html';
-                    // const product = await response.json();
-                    // console.log('Product added:', product);
+
                     // Optionally, you can redirect or show a success message here
                 } catch (error) {
                     console.error('Error adding product:', error);
@@ -125,7 +121,5 @@
             });
         });
     </script>
-
 </body>
-
 </html>
