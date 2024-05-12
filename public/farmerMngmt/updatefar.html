@@ -122,6 +122,12 @@
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
+                 // Check if any field is empty
+                 if (!username || !address || !email || !password) {
+                    alert('All fields are required. Please fill in all fields.');
+                    return; // Exit the function if any field is empty
+                }
+
                 try {
                     // Extract farmer ID from the query parameters
                     const farmerId = getQueryParams().id;

@@ -99,6 +99,10 @@
 
                 // Extract customer details from the form
                 const name = document.getElementById('name').value;
+                if(!name){
+                    alert("Name field must not be empty!1");
+                    return;
+                }
 
                 try {
                     // Extract customer ID from the query parameters
