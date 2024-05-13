@@ -12,6 +12,30 @@
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        .w-item {
+    margin-bottom: 20px; /* Add margin to create space between items */
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.i-caption {
+    flex: 1; /* Allow the item name to grow to fill available space */
+}
+
+.i-price {
+    margin-left: 20px; /* Add margin between item name and price */
+}
+
+.i-btns {
+    margin-left: auto; /* Push the buttons to the right */
+}
+
+    </style>
 </head>
 <body>
     <main id="main">
@@ -102,5 +126,103 @@
     <footer class="footer">
         <p>@FreshPicks</p>
     </footer>
+
+
+    <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    const wItemsContainer = document.querySelector('.ware'); // Select the container where items will be displayed
+
+    // Function to render selected items
+    function renderSelectedItems() {
+        // Clear previous items
+        wItemsContainer.innerHTML = '';
+
+        // Retrieve selected items from local storage
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Loop through each selected item and create HTML elements to display them
+        cartItems.forEach(function(item) {
+            const newItem = document.createElement('div');
+            newItem.classList.add('w-item');
+
+            newItem.innerHTML = `
+                <figure class="item">
+                    <figcaption class="i-caption">${item.title}</figcaption>
+                    <p class="i-price"><span class="price-off">Rs ${item.price}</span></p>
+                    <div class="i-btns">
+                        <button class="i-btn minus" type="button" data-title="${item.title}"><i class="material-icons">remove</i></button>
+                        <input type="number" name="bb-qty" class="w-input i-input" min="1" value="1" data-title="${item.title}">
+                        <button class="i-btn plus" type="button" data-title="${item.title}"><i class="material-icons">add</i></button>
+                    </div>
+                </figure>
+            `;
+
+            wItemsContainer.appendChild(newItem);
+        });
+
+        // Add event listeners to plus and minus buttons
+        const minusButtons = document.querySelectorAll('.i-btn.minus');
+        const plusButtons = document.querySelectorAll('.i-btn.plus');
+
+        minusButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const title = button.getAttribute('data-title');
+                updateQuantity(title, -1);
+            });
+        });
+
+        plusButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const title = button.getAttribute('data-title');
+                updateQuantity(title, 1);
+            });
+        });
+    }
+
+    // Call the renderSelectedItems function when the page loads
+    renderSelectedItems();
+
+    // Function to update the quantity
+    function updateQuantity(title, change) {
+        const input = document.querySelector(`input[data-title="${title}"]`);
+        let quantity = parseInt(input.value) + change;
+        if (quantity < 1) {
+            quantity = 1;
+        }
+        input.value = quantity;
+    }
+
+    const form = document.querySelector('.form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting by default
+        console.log('Form submitted'); // Check if the event listener is triggered
+
+        // Validate each field before submitting
+        const email = document.querySelector('input[name="email"]').value;
+        const phone = document.querySelector('input[name="phone"]').value;
+        const name = document.querySelector('input[name="name"]').value;
+        const address = document.querySelector('input[name="address"]').value;
+        const city = document.querySelector('input[name="city"]').value;
+        const country = document.querySelector('select[name="country"]').value;
+
+        if (!email || !phone || !name || !address || !city || !country) {
+            // If any field is empty, show an alert
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill out all fields!',
+            });
+        } else {
+            // Otherwise, submit the form
+            form.submit();
+        }
+    });
+
+});
+
+    </script>
+
+
 </body>
 </html>
