@@ -66,6 +66,10 @@
           </li>
           
           <li>
+            <a href="#enquiries" class="navbar-link" onclick="scrollToSection('enquiries')">Enquiry</a>
+        </li>
+
+          <li>
             <a href="#" id="signout" class="navbar-link">Signout</a>
           </li>
           
@@ -1486,17 +1490,22 @@
   </main>
 
 
-
-    <!-- About Us Section -->
-
-    <section id="about-us" class="section container-about"> 
-      <div class="container">
-          <h2 class="h2 section-title">About Us</h2>
-          <p>Welcome to FreshPicks, your local farmers market connecting you with fresh, locally grown produce and artisanal products.</p>
-          <p>At FreshPicks, we are committed to supporting sustainable agriculture practices and fostering a vibrant local economy. Our mission is to provide a platform for local farmers and artisans to sell their products directly to the community, creating a sustainable and thriving local food system.</p>
-          <p>We believe in promoting healthy eating habits, supporting small-scale farmers and producers, and building connections between producers and consumers.</p>
-      </div>
-  </section>
+  <!-- #Enquiry form
+   -->
+   <div id="enquiries" class="enquiry">
+    <h2>Enquiry Form</h2>
+    <form action="#" method="post">
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+  
+      <input type="text" id="email" name="email" placeholder="Your email" required>
+  
+      <input type="text" id="phone" name="phone" placeholder="Your phone number" required>
+  
+      <textarea id="message" name="message" placeholder="How can we help you?" style="height:100px" required></textarea>
+  
+      <input type="submit" value="Submit">
+    </form>
+  </div>
   
 
   <!-- 
@@ -1513,7 +1522,7 @@
           <a href="./index.html" class="logo">Fresh<span class="span">Picks</span></a>
 
           <p class="footer-text">
-           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta rerum quo rem dolores tenetur, nulla reprehenderit aut blanditiis assumenda corrupti iste. Harum cum tenetur distinctio laborum, quibusdam officia eos recusandae?
+            Welcome to FreshPicks, your local farmers market connecting you with fresh, locally grown produce and artisanal products. At FreshPicks, we are committed to supporting sustainable agriculture practices and fostering a vibrant local economy. Our mission is to provide a platform for local farmers and artisans to sell their products directly to the community, creating a sustainable and thriving local food system. We believe in promoting healthy eating habits, supporting small-scale farmers and producers, and building connections between producers and consumers.
           </p>
 
           <ul class="social-list">

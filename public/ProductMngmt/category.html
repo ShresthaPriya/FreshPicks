@@ -109,6 +109,30 @@
         #addCategoryForm {
             margin-top: 135px;
         }
+        .container {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.manageCategory {
+    margin-top: 50px; /* Adjust the margin as needed to create space between the close button and the form */
+}
+
+
+.close-btn {
+    position: absolute; /* Position the cross icon absolutely */
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    cursor: pointer;
+}
+
+
+
 
         input[type="text"] {
             width: 80%;
@@ -146,24 +170,30 @@
 </head>
 
 <body>
-    <a href="prodmngmt.html" class="close-btn">
-        <img src="delete.png" alt="Close" width="50px">
-    </a>
-    <form action="" id="addCategoryForm">
-        <input type="text" id="categoryName" placeholder="Enter category name">
-        <button type="submit">Add Category</button>
-    </form>
-    <table id="categoryTable">
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td>Category Name</td>
-                <td>Actions</td>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="container">
+        <a href="prodmngmt.html" class="close-btn">
+            <img src="delete.png" alt="Close" width="50px">
+        </a>
+        <div class="manageCategory">
+            <form action="" id="addCategoryForm">
+                <input type="text" id="categoryName" placeholder="Enter category name">
+                <button type="submit">Add Category</button>
+            </form>
+            <table id="categoryTable">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Category Name</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be added dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const deleteCategory = async (categoryInfo) => {
