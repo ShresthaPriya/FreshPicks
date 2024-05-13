@@ -65,6 +65,9 @@
               <a href="#footers" class="navbar-link" onclick="scrollToSection('footers')">Contact</a>
           </li>
           
+          <li>
+            <a href="#" id="signout" class="navbar-link">Signout</a>
+          </li>
           
 
           </ul>
@@ -345,6 +348,57 @@
         </div>
       </section>
 
+<!-- 
+        - #OFFERS
+      -->
+
+      <section class="section offers">
+        <div class="container">
+
+          <ul class="offers-list has-scrollbar">
+
+            <li class="offers-item">
+              <a href="./shop.html" class="offers-card">
+
+                <figure class="card-banner">
+                  <img src="./user/fruit.png" width="292" height="230" loading="lazy"
+                    alt="Fresh vegetables package" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Fresh and tasty vegetables.</h3>
+
+                  
+                </div>
+
+              </a>
+            </li>
+
+            <li class="offers-item">
+              <a href="./shop.html" class="offers-card">
+
+                <figure class="card-banner">
+                  <img src="./user/meat.webp" width="336" height="244" loading="lazy"
+                    alt="Healthy & fresh beef" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Healthy and fresh meat.</h3>
+                  
+                </div>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
 
 
 
@@ -360,33 +414,6 @@
 
           <h2 class="h2 section-title">All Organic Products</h2>
 
-          <ul class="filter-list">
-
-            <li>
-              <button class="filter-btn active">
-                <p class="filter-text">Fresh Vegetables</p>
-              </button>
-            </li>
-
-            <li>
-              <button class="filter-btn">
-                <p class="filter-text">Fish & Meat</p>
-              </button>
-            </li>
-
-            <li>
-              <button class="filter-btn">
-                <p class="filter-text">Healthy Fruit</p>
-              </button>
-            </li>
-
-            <li>
-              <button class="filter-btn">
-                <p class="filter-text">Dairy Products</p>
-              </button>
-            </li>
-
-          </ul>
 
           <ul class="grid-list">
 
@@ -1278,22 +1305,27 @@
   -->
   <script src="user.js"></script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const signoutButton = document.getElementById('signout');
+      signoutButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        const isConfirmed = confirm("Are you sure you want to log out?");
+  
+        if (isConfirmed) {
+          window.location.href = "./index.html";
+        }
+      });
+    });
+  </script>
+
   <!-- 
     - ionicon link
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="WishList.js"></script>
-  <script src="Search.js"></script>
-  <script src="addtocart.js"></script>
-  <!-- <script>
-    function scrollToSection(sectionId) {
-       const section = document.getElementById(sectionId);
-       if (section) {
-          // Smooth scrolling to the section
-          section.scrollIntoView({ behavior: 'smooth' });
-       }
-    }
- </script> -->
+
+  
 </body>
 </html>
