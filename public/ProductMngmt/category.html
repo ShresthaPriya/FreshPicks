@@ -6,69 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* Style the form */
+        .container {
+            position: relative;
+        }
+
         form {
             position: absolute;
-            /* Position the form */
-            top: 20px;
-            /* Align the top of the form to the top of the page */
-            left: 42%;
-            /* Align the left side of the form to the horizontal center */
+            top: -150px;
+            left: 50%;
             transform: translateX(-50%);
-            /* Move the form back by half of its own width */
             width: 45%;
-            /* Set the width of the form */
             border: 2px solid #ccc;
-            /* Add a border */
-            /* padding: 00px; */
-            /* Add padding */
             border-radius: 10px;
-            /* Add border radius for rounded corners */
             background-color: #f9f9f9;
-            /* Set background color */
+            z-index: 1;
         }
 
-        /* Style the table */
         table {
-            margin-top: 60px;
-            /* Add margin to the top of the table to create space for the form */
             width: 60%;
-            /* Set the width of the table */
+            margin: 250px auto 0;
             border-collapse: collapse;
-            /* Collapse table borders */
-            margin-top: 200px;
-            margin-left: 300px;
-            ;
         }
 
-        /* Style table headings */
         thead tr {
             text-align: center;
-            /* Center align headings */
             background-color: #ff783a;
-            /* Set background color for headings */
         }
 
         thead td {
             padding: 10px;
-            /* Add padding to table headings */
         }
 
-        /* Style table cells */
         tbody tr td {
             text-align: center;
-            /* Center align table cells */
             padding: 10px;
-            /* Add padding to table cells */
         }
 
-        /* Style odd rows with a different background color */
         tbody tr:nth-child(odd) {
             background-color: #f2f2f2;
-            /* Set background color for odd rows */
         }
 
-        /* Style buttons */
         .actions-btns {
             display: flex;
             justify-content: center;
@@ -90,81 +67,37 @@
             background-color: #4caf50;
         }
 
-        /* Style close button */
         .close-btn {
             position: absolute;
-            top: 70px;
-            right: 250px;
+            top: -200px;
+            right: 50px;
             cursor: pointer;
         }
 
-        /* Style the table body to scroll */
         #categoryTable tbody {
             height: 130px;
-            /* Set the height of the table body */
             overflow-y: auto;
-            /* Enable vertical scrolling */
         }
-
-        #addCategoryForm {
-            margin-top: 135px;
-        }
-        .container {
-    position: relative;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.manageCategory {
-    margin-top: 50px; /* Adjust the margin as needed to create space between the close button and the form */
-}
-
-
-.close-btn {
-    position: absolute; /* Position the cross icon absolutely */
-    top: 10px; /* Adjust the top position as needed */
-    right: 10px; /* Adjust the right position as needed */
-    cursor: pointer;
-}
-
-
-
 
         input[type="text"] {
-            width: 80%;
-            /* Make the input field wider */
+            width: calc(100% - 22px);
+            margin: 10px;
             padding: 10px;
-            /* Increase padding to make input field taller */
             border-radius: 6px;
-            /* Add border radius */
             border: 1px solid #ccc;
-            /* Add border */
             font-size: 16px;
-            /* Increase font size */
             box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
         }
 
-        /* Style submit button */
         button[type="submit"] {
+            margin: 10px;
             padding: 10px 20px;
-            /* Increase padding to make button taller */
             background-color: #007bff;
-            /* Change button color */
             color: white;
-            /* Change text color */
             border: none;
-            /* Remove border */
             border-radius: 6px;
-            /* Add border radius */
             cursor: pointer;
-            /* Add pointer cursor */
             font-size: 16px;
-            /* Increase font size */
         }
     </style>
 </head>
@@ -174,26 +107,26 @@
         <a href="prodmngmt.html" class="close-btn">
             <img src="delete.png" alt="Close" width="50px">
         </a>
-        <div class="manageCategory">
-            <form action="" id="addCategoryForm">
-                <input type="text" id="categoryName" placeholder="Enter category name">
-                <button type="submit">Add Category</button>
-            </form>
-            <table id="categoryTable">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Category Name</td>
-                        <td>Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Table rows will be added dynamically -->
-                </tbody>
-            </table>
-        </div>
+        <form action="" id="addCategoryForm">
+            <input type="text" id="categoryName" placeholder="Enter category name">
+            <button type="submit">Add Category</button>
+        </form>
+        <table id="categoryTable">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Category Name</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be added dynamically -->
+            </tbody>
+        </table>
     </div>
-    
+
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const deleteCategory = async (categoryInfo) => {
@@ -273,14 +206,14 @@
                     };
 
 
-                    const updateButtons = document.querySelectorAll('.update-btn');updateButtons.forEach(button => {
-                    button.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        const categoryId = button.getAttribute('data-id');
-                        // Redirect to update.html with the category ID
-                        window.location.href = `update.html?id=${categoryId}`;
+                    const updateButtons = document.querySelectorAll('.update-btn'); updateButtons.forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            const categoryId = button.getAttribute('data-id');
+                            // Redirect to update.html with the category ID
+                            window.location.href = `update.html?id=${categoryId}`;
+                        });
                     });
-                });
 
 
                 })
