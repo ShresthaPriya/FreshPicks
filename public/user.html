@@ -96,13 +96,13 @@
           <button class="header-action-btn" aria-label="Open whishlist" data-panel-btn="whishlist">
             <ion-icon name="heart-outline"></ion-icon>
 
-            <data class="btn-badge" value="3">03</data>
+            <data class="btn-badge" value=""></data>
           </button>
 
           <button class="header-action-btn" aria-label="Open shopping cart" data-panel-btn="cart">
             <ion-icon name="basket-outline"></ion-icon>
 
-            <data class="btn-badge" value="2">02</data>
+            <data class="btn-badge" value=""></data>
           </button>
 
         </div>
@@ -213,7 +213,7 @@
       <ul class="panel-list">
 
         <li class="panel-item">
-          <a href="./product-details.html" class="panel-card">
+          <!-- <a href="./product-details.html" class="panel-card"> -->
 
             <!-- <figure class="item-banner">
               <img src="./user/orange.png" width="46" height="46" loading="lazy"
@@ -234,7 +234,7 @@
         </li>
 
         <li class="panel-item">
-          <a href="./product-details.html" class="panel-card">
+          <!-- <a href="./product-details.html" class="panel-card"> -->
                
             <!-- <figure class="item-banner">
               <img src="./user/strawberry.png" width="46" height="46" loading="lazy" alt="Strawberry">
@@ -1490,12 +1490,13 @@
    -->
    <div id="enquiries" class="enquiry">
     <h2>Enquiry Form</h2>
-    <form action="#" method="post">
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <input type="hidden" name="access_key" value="034f4d6a-8786-403e-8d43-138188b6745a">
+
       <input type="text" id="name" name="name" placeholder="Your name" required>
   
       <input type="text" id="email" name="email" placeholder="Your email" required>
-  
-      <input type="text" id="phone" name="phone" placeholder="Your phone number" required>
   
       <textarea id="message" name="message" placeholder="How can we help you?" style="height:100px" required></textarea>
   
@@ -1621,30 +1622,6 @@
     <ion-icon name="arrow-up-outline"></ion-icon>
   </a>
 
-
-
-
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="user.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const signoutButton = document.getElementById('signout');
-      signoutButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        
-        const isConfirmed = confirm("Are you sure you want to log out?");
-  
-        if (isConfirmed) {
-          window.location.href = "./index.html";
-        }
-      });
-    });
-  </script>
-
   <!-- 
     - ionicon link
   -->
@@ -1652,8 +1629,7 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="WishList.js"></script>
   <script src="addtocart.js"></script>
-
-
+  <script src="user.js"></script>
   
 </body>
 </html>
