@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <title>Add products</title>
     <link rel="stylesheet" href="addprod.css" />
 </head>
 <body>
+    
     <div class="container">
         <div class="details">
             <div class="category">
+                <div id="cross-icon-container">
+                    <i id="cross-icon" class="fas fa-times"></i>
+                </div>
                 <div class="cardHeader">
                     <h2>Product Category</h2>
                 </div>
@@ -49,9 +54,9 @@
     // Function to populate category table with category names
     const populateCategoryTable = async () => {
         const categories = await fetchCategories();
-        categoryTableBody.innerHTML = ''; // Clear existing table rows
+        categoryTableBody.innerHTML = ''; 
         categories.forEach(category => {
-            const categoryName = category.name; // Assuming 'name' is the property containing category name
+            const categoryName = category.name; 
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${categoryName}</td>
@@ -65,6 +70,13 @@
     populateCategoryTable();
 });
 
-    </script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const crossIcon = document.getElementById("cross-icon");
+
+        crossIcon.addEventListener("click", function () {
+            window.location.href = "FarmerHomepage.html";
+        });
+    });
+</script>
 </body>
 </html>
