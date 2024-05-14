@@ -592,7 +592,11 @@
     border-radius: var(--radius-4);
   }
   
-  .panel-list { margin-block-end: auto; }
+  .panel-list { 
+    margin-block-end: auto;
+    overflow-y: auto; /* Add a vertical scrollbar when needed */
+    max-height: 1200px; /* Set a max height for the panel list */
+   }
   
   .panel-item:not(:last-child) {
     padding-block-end: 20px;
@@ -673,6 +677,21 @@
     line-height: 1.6;
     color: #666;
   }
+
+  .scroll-btn {
+    display: none; /* Initially hide the scroll button */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--emerald);
+    color: var(--white);
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 9999;
+    cursor: pointer;
+}
+
 
 /* enquiry form */
 .enquiry {

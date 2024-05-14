@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const wishlistPanel = document.querySelector('[data-side-panel="whishlist"]');
     const wishlistHeader = document.querySelector('.header-action-btn[data-panel-btn="whishlist"]');
     const wishlistBadge = wishlistHeader.querySelector('.btn-badge');
+    const scrollBtn = document.querySelector('.scroll-btn');
   
     // Load wishlist items from local storage on page load
     loadWishlist();
@@ -90,5 +91,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
         wishlistBadge.innerText = wishlistItems.length.toString().padStart(2, '0');
     } 
+
+     // Check the height of the panel list and toggle the scroll button
+    function toggleScrollButton() {
+        if (wishlistPanel.querySelector('.panel-list').scrollHeight > 1200) {
+            scrollBtn.style.display = 'block';
+        } else {
+            scrollBtn.style.display = 'none';
+        }
+    }
+
+    // Call the function initially and on window resize
+    toggleScrollButton();
+    window.addEventListener('resize', toggleScrollButton);
+
+    // Smooth scroll to the bottom of the panel list when scroll button is clicked
+    scrollBtn.addEventListener('click', function() {
+        wishlistPanel.querySelector('.panel-list').scrollTo({
+            top: wishlistPanel.querySelector('.panel-list').scrollHeight,
+            behavior: 'smooth'
+        });
+    });
   });
   

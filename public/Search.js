@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        if (!found) {
+        if (!found) {   
             productSection.innerHTML = '<p>No matching products found.</p>'; // Display message if no products match
         } else {
             hideSections();
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function showProductOnly(productCard) {
-        productSection.innerHTML = '';
+        productSection.innerHTML = ''; // Clear existing products
         productSection.appendChild(productCard);
     }
 
