@@ -1,33 +1,31 @@
-const model = require('mongoose');
-const { required } = require('nodemon/lib/config');
+const mongoose = require('mongoose');
 
-const checkoutSchema = new model.Schema({
+const checkoutSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
     },
     address:{
-        type:String,
+        type: String,
         required: true
     },
     email:{
-        type:String,
+        type: String,
         required: true,
     },
     phone:{
-        type:Number,
+        type: Number,
         required: true
     },
     city:{
-        type:String,
+        type: String,
         required: true
     },
     country:{
-        type:String,
+        type: String,
         required: true
-    }
-   
+    },
+    selectedItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }] // Assuming 'Item' is your item schema
+}, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
-},{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
-
-module.exports = model.model('Checkout', checkoutSchema)
+module.exports = mongoose.model('Checkout', checkoutSchema);

@@ -146,14 +146,14 @@
             const form = document.querySelector('.form');
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
-
+    
                 const email = document.querySelector('input[name="email"]').value;
                 const phone = document.querySelector('input[name="phone"]').value;
                 const username = document.querySelector('input[name="name"]').value;
                 const address = document.querySelector('input[name="address"]').value;
                 const city = document.querySelector('input[name="city"]').value;
                 const country = document.querySelector('select[name="country"]').value;
-
+    
                 if (!email || !phone || !username || !address || !city || !country) {
                     Swal.fire({
                         icon: 'error',
@@ -170,36 +170,41 @@
                         city,
                         country
                     };
-
+    
                     fetch('/api/checkout', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(formData),
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                return response.json();
-                            } else {
-                                throw new Error('Failed to submit form');
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Failed to submit form');
+                        }
+                    })
+                    .then(data => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Your order has been placed successfully!',
+                            allowOutsideClick: false, // Prevents closing modal by clicking outside
+                            allowEscapeKey: false // Prevents closing modal by pressing ESC key
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'user.html';
                             }
-                        })
-                        .then(data => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: 'Your order has been placed successfully!',
-                            });
-                            window.location.href = 'final.html';
-                        })
-                        .catch(error => {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: error.message,
-                            });
                         });
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: error.message,
+                        });
+                    });
                 }
             });
         });
