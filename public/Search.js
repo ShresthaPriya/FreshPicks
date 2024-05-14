@@ -2,39 +2,114 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.querySelector('.search-input');
     const searchSubmit = document.querySelector('.search-submit');
     const productSection = document.querySelector('.product');
+    const sectionsToHide = document.querySelectorAll('.hero, .service, .offers, .top-product, .testimonials, .enquiry');
     const footer = document.querySelector('footer');
+    let noMatchMessage = document.createElement('div');
+    noMatchMessage.classList.add('no-match-message');
+    noMatchMessage.innerText = 'No matching products found.';
 
     searchSubmit.addEventListener('click', function () {
         const searchTerm = searchInput.value.toLowerCase();
-        const productCards = document.querySelectorAll('.product-card');
-        let found = false;
+        fetch('/api/getproducts') // Fetch products from the server
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Filter products based on the search term
+                const filteredProducts = data.filter(product => product.productName.toLowerCase().includes(searchTerm));
 
-        productCards.forEach(function (card) {
-            const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
-
-            if (cardTitle.includes(searchTerm) && !found) {
-                showProductOnly(card.parentNode.cloneNode(true));
-                found = true;
-            }
-        });
-
-        if (!found) {   
-            productSection.innerHTML = '<p>No matching products found.</p>'; // Display message if no products match
-        } else {
-            hideSections();
-        }
+                if (filteredProducts.length > 0) {
+                    // Display only the matched product
+                    showProductOnly(filteredProducts[0]); // Assuming only one product is matched
+                    hideSections();
+                    removeNoMatchMessage();
+                } else {
+                    showNoMatchMessage();
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     });
 
-    function showProductOnly(productCard) {
+    function showProductOnly(product) {
         productSection.innerHTML = ''; // Clear existing products
+
+        const productCard = createProductCard(product);
         productSection.appendChild(productCard);
     }
 
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.classList.add('product-card');
+        card.classList.add('searched-product'); // Add a class for styling the searched product
+    
+        // Construct the card HTML using the product data
+        card.innerHTML = `
+            <div class="product-details">
+                <div class="rating-wrapper">
+                    ${getStarIcons()} <!-- You can modify this function to display star icons based on product rating -->
+                </div>
+                <h3 class="h4 card-title">${product.productName}</h3>
+                <div class="price-wrapper">
+                    <data class="price" value="${product.price}">Rs ${product.price}</data>
+                    <div class="btn-wrapper">
+                        <button class="product-btn" aria-label="Add to Wishlist" onclick="addToWishlist('${product._id}')">
+                            <ion-icon name="heart-outline"></ion-icon>
+                            <div class="tooltip">Add to Wishlist</div>
+                        </button>
+                        <button class="product-btn" aria-label="Add to Cart" onclick="addToCart('${product._id}')">
+                            <ion-icon name="basket-outline"></ion-icon>
+                            <div class="tooltip">Add to Cart</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    
+        return card;
+    }    
+    
+
+    function addToWishlist(productId) {
+        // Implement functionality to add product to wishlist
+        console.log('Added to wishlist:', productId);
+    }
+
+    function addToCart(productId) {
+        // Implement functionality to add product to cart
+        console.log('Added to cart:', productId);
+    }
+
+    function getStarIcons() {
+        // Implement logic to generate star icons based on product rating
+        return `
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+        `;
+    }
+
     function hideSections() {
-        const sectionsToHide = document.querySelectorAll('.hero, .service, .offers, .top-product, .testimonials, .enquiry');
         sectionsToHide.forEach(function (section) {
             section.style.display = 'none';
         });
         footer.style.display = 'none'; // Hide the footer
+    }
+
+    function showNoMatchMessage() {
+        removeNoMatchMessage();
+        searchInput.parentNode.insertBefore(noMatchMessage, searchInput.nextSibling);
+    }    
+
+    function removeNoMatchMessage() {
+        if (noMatchMessage.parentNode) {
+            noMatchMessage.parentNode.removeChild(noMatchMessage);
+        }
     }
 });
