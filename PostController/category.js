@@ -1,9 +1,9 @@
-const model = require('../models/checkout');
+const model = require('../models/categoryModel');
 
-const storecheckout = async (req, res) => {
+const createCategory = async (req, res) => {
     try {
-        const checkout = await model.create(req.body);
-        res.status(201).json(checkout);
+        const category = await model.create(req.body);
+        res.status(201).json(category);
 
     } catch(error) {
         res.status(500).json({ message: error.message });
@@ -11,4 +11,4 @@ const storecheckout = async (req, res) => {
     }
 };
 
-module.exports = storecheckout;
+module.exports = createCategory;
