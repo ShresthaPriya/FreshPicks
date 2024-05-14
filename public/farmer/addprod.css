@@ -74,10 +74,7 @@ body {
   .details .category table tr:last-child {
     border-bottom: none;
   }
-  .details .category table tbody tr:hover {
-    background: var(--blue);
-    color: var(--white);
-  }
+  
   .details .category table tr td {
     padding: 10px;
   }
