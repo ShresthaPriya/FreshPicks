@@ -93,6 +93,10 @@
                         productName.classList.add('product-name');
                         productName.textContent = product.productName;
 
+                        const productCategory = document.createElement('div');
+                        productCategory.classList.add('product-category');
+                        productCategory.textContent = product.category; 
+
                         const productPrice = document.createElement('div');
                         productPrice.classList.add('product-price');
                         productPrice.textContent = `NRs. ${product.price}`;
@@ -104,6 +108,7 @@
                         productCard.appendChild(productImage);
                         productCard.appendChild(productName);
                         productCard.appendChild(productPrice);
+                        productCard.appendChild(productCategory);
                         productCard.appendChild(productDescription);
 
                         productList.appendChild(productCard);
