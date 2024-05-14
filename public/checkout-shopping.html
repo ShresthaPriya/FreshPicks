@@ -15,7 +15,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        /* Additional Styles */
         .w-item {
             margin-bottom: 20px;
         }
@@ -37,40 +36,43 @@
         .i-btns {
             margin-left: auto;
         }
+
+        #cross-icon-container {
+            position: absolute;
+            top: 20px;
+            /* Adjusted from -150px to 20px */
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e56123;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        #cross-icon {
+            color: white;
+            font-size: 1.5rem;
+        }
+
     </style>
 </head>
 
 <body>
+    <div id="cross-icon-container">
+        <i id="cross-icon" class="material-icons">close</i>
+    </div>
     <main id="main">
+
         <h1>Checkout</h1>
         <!-- Selected Items Display -->
         <aside class="ware">
             <!-- Items will be dynamically added here -->
             <!-- Example items are hard-coded here for demonstration -->
-            <div class="w-item">
-                <figure class="item">
-                    <img class="i-img" src="./user/orange.png" alt="Orange">
-                    <figcaption class="i-caption">Orange</figcaption>
-                    <p class="i-price"><span class="price-off">Rs 100</span></p>
-                    <div class="i-btns">
-                        <button class="i-btn minus" type="button"><i class="material-icons">remove</i></button>
-                        <input type="number" name="bb-qty" class="w-input i-input" min="1" value="1">
-                        <button class="i-btn plus" type="button"><i class="material-icons">add</i></button>
-                    </div>
-                </figure>
-            </div>
-            <div class="w-item">
-                <figure class="item">
-                    <img class="i-img" src="./user/melon.png" alt="Watermelon">
-                    <figcaption class="i-caption">Watermelon</figcaption>
-                    <p class="i-price"><span class="price-off">Rs 100</span> </p>
-                    <div class="i-btns">
-                        <button class="i-btn minus" type="button"><i class="material-icons">remove</i></button>
-                        <input type="number" name="s-qty" class="w-input i-input" min="1" value="1">
-                        <button class="i-btn plus" type="button"><i class="material-icons">add</i></button>
-                    </div>
-                </figure>
-            </div>
+            
             <!-- Total Price Display -->
             <p class="g-price g-price-shipping"><span>Shipping</span> <span>Rs 20</span></p>
             <p class="g-price"><span>Total</span> <span class="total">Rs 120</span></p>
@@ -78,6 +80,8 @@
         <!-- Checkout Form -->
         <form class="form">
             <!-- Contact Information -->
+
+
             <fieldset class="fieldset f-contact">
                 <legend class="legend">Contact Info</legend>
                 <label class="label" for="email">Email</label>
@@ -87,10 +91,10 @@
                 </p>
 
                 <label class="label" for="phone">Phone</label>
-                    <p class="field">
-                        <i class="material-icons icon">phone</i>
-                        <input type="tel" name="phone" class="input" placeholder="Your phone..." maxlength="14"  required>
-                    </p>
+                <p class="field">
+                    <i class="material-icons icon">phone</i>
+                    <input type="tel" name="phone" class="input" placeholder="Your phone..." maxlength="14" required>
+                </p>
 
 
 
@@ -136,6 +140,9 @@
             </div>
         </form>
     </main>
+    <!-- Cross Icon -->
+
+
     <!-- Footer -->
     <footer class="footer">
         <p>@FreshPicks</p>
@@ -212,23 +219,23 @@
 
     <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    const wItemsContainer = document.querySelector('.ware'); // Select the container where items will be displayed
+        document.addEventListener('DOMContentLoaded', function () {
+            const wItemsContainer = document.querySelector('.ware'); // Select the container where items will be displayed
 
-    // Function to render selected items
-    function renderSelectedItems() {
-        // Clear previous items
-        wItemsContainer.innerHTML = '';
+            // Function to render selected items
+            function renderSelectedItems() {
+                // Clear previous items
+                wItemsContainer.innerHTML = '';
 
-        // Retrieve selected items from local storage
-        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                // Retrieve selected items from local storage
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Loop through each selected item and create HTML elements to display them
-        cartItems.forEach(function(item) {
-            const newItem = document.createElement('div');
-            newItem.classList.add('w-item');
+                // Loop through each selected item and create HTML elements to display them
+                cartItems.forEach(function (item) {
+                    const newItem = document.createElement('div');
+                    newItem.classList.add('w-item');
 
-            newItem.innerHTML = `
+                    newItem.innerHTML = `
                 <figure class="item">
                     <figcaption class="i-caption">${item.title}</figcaption>
                     <p class="i-price"><span class="price-off">Rs ${item.price}</span></p>
@@ -240,44 +247,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 </figure>
             `;
 
-            wItemsContainer.appendChild(newItem);
+                    wItemsContainer.appendChild(newItem);
+                });
+
+                // Add event listeners to plus and minus buttons
+                const minusButtons = document.querySelectorAll('.i-btn.minus');
+                const plusButtons = document.querySelectorAll('.i-btn.plus');
+
+                minusButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        const title = button.getAttribute('data-title');
+                        updateQuantity(title, -1);
+                    });
+                });
+
+                plusButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        const title = button.getAttribute('data-title');
+                        updateQuantity(title, 1);
+                    });
+                });
+            }
+
+            // Call the renderSelectedItems function when the page loads
+            renderSelectedItems();
+
+            // Function to update the quantity
+            function updateQuantity(title, change) {
+                const input = document.querySelector(`input[data-title="${title}"]`);
+                let quantity = parseInt(input.value) + change;
+                if (quantity < 1) {
+                    quantity = 1;
+                }
+                input.value = quantity;
+            }
+
         });
 
-        // Add event listeners to plus and minus buttons
-        const minusButtons = document.querySelectorAll('.i-btn.minus');
-        const plusButtons = document.querySelectorAll('.i-btn.plus');
-
-        minusButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                const title = button.getAttribute('data-title');
-                updateQuantity(title, -1);
+        document.addEventListener('DOMContentLoaded', function () {
+            const crossButton = document.getElementById('cross-icon-container');
+            crossButton.addEventListener('click', function () {
+                window.location.href = 'user.html';
             });
         });
 
-        plusButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                const title = button.getAttribute('data-title');
-                updateQuantity(title, 1);
-            });
-        });
-    }
 
-    // Call the renderSelectedItems function when the page loads
-    renderSelectedItems();
-
-    // Function to update the quantity
-    function updateQuantity(title, change) {
-        const input = document.querySelector(`input[data-title="${title}"]`);
-        let quantity = parseInt(input.value) + change;
-        if (quantity < 1) {
-            quantity = 1;
-        }
-        input.value = quantity;
-    }
-
-});
-
-    
     </script>
 </body>
 

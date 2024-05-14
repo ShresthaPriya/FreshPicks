@@ -27,3 +27,35 @@ if (toggleButton) {
     main.classList.toggle('active');
   };
 }
+
+// add the products details in admin dashboard
+      document.addEventListener('DOMContentLoaded', function () {
+    // Fetch top products data
+    fetch('/api/getproducts')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Populate the "Top Products" table
+        const topProductsTableBody = document.querySelector('#productTable tbody');
+        data.forEach(product => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${product.productName}</td>
+            <td>${product.price}</td>
+          `;
+          topProductsTableBody.appendChild(row);
+        });
+
+        // Update total number of products
+        const totalProductsCount = data.length;
+        const totalProductsElement = document.getElementById('totalProductsCount');
+        totalProductsElement.textContent = totalProductsCount;
+      })
+      .catch(error => {
+        console.error('Error fetching top products:', error);
+      });
+  });
