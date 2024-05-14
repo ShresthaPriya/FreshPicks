@@ -28,7 +28,7 @@ if (toggleButton) {
   };
 }
 
-
+// add the products details in admin dashboard
       document.addEventListener('DOMContentLoaded', function () {
     // Fetch top products data
     fetch('/api/getproducts')
