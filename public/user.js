@@ -104,5 +104,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Display a confirmation dialog with a custom message and OK/Cancel buttons
     const confirmationMessage = "Are you sure you want to log out?";
     const isConfirmed = confirm(confirmationMessage);
+
+    // If user confirms, perform logout actions
+    if (isConfirmed) {
+      // Redirect to index.html immediately after confirmation
+      window.location.href = "./index.html";
+    }
   });
 });
