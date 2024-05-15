@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <title>Product List</title>
     <style>
         /* CSS styles for the layout */
@@ -31,15 +32,10 @@
        .product-description {
             margin-bottom: 5px;
         }
-       /* .product-image {
-            width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }*/
          .manage-button-container {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 430px;
+            right: 700px;
             padding: 10px;
         }
        .manage-button {
@@ -55,12 +51,34 @@
         color: #e56123;
         border-color: #e56123;
         } 
+        #cross-icon-container {
+            position: absolute;
+            top: 0px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e56123;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        #cross-icon {
+            color: white;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
     
     <div id="headerContainer" style="position: relative;">
         <h1>Product Details</h1>
+        <div id="cross-icon-container">
+            <i id="cross-icon" class="fas fa-times"></i>
+        </div>
         <div class="manage-button-container">
             <button class="manage-button" id="manage-button">Manage product</button>
         </div>
@@ -123,6 +141,11 @@
                 window.location.href = './delprods.html';
             });
         });
+
+        document.getElementById('cross-icon-container').addEventListener('click', () => {
+    window.location.href = '../FarmerHomepage.html';
+});
+
     </script>
 </body>
 </html>
