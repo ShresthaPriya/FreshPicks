@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const newItem = document.createElement('li');
             newItem.classList.add('panel-item');
             newItem.innerHTML = `
-                <a href="./product-details.html" class="panel-card">
+                <div class="panel-card">
                     <div>
                         <p class="item-title">${item.title}</p>
                         <span class="item-value">Rs ${item.price}</span>
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button class="item-close-btn" aria-label="Remove item">
                         <ion-icon name="close-outline"></ion-icon>
                     </button>
-                </a>
+                </div>
             `;
             wishlistPanel.querySelector('.panel-list').appendChild(newItem);
         });

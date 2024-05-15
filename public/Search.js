@@ -11,12 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const searchTerm = searchInput.value.toLowerCase();
         if (searchTerm === '') {
             clearProducts();
+            removeNoMatchMessage(); // Remove the error message if the input is empty
             showSections();
         } else {
             fetchAndFilterProducts(searchTerm);
         }
     });
-
+    
     function fetchAndFilterProducts(searchTerm) {
         fetch('/api/getproducts') // Fetch products from the server
             .then(response => {
@@ -56,37 +57,36 @@ document.addEventListener('DOMContentLoaded', function () {
         productSection.innerHTML = ''; // Clear existing products
     }
 
-    function createProductCard(product) {
-        const card = document.createElement('div');
-        card.classList.add('product-card');
-        card.classList.add('searched-product'); // Add a class for styling the searched product
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.classList.add('product-card');
+    card.classList.add('searched-product'); // Add a class for styling the searched product
 
-        // Construct the card HTML using the product data
-        card.innerHTML = `
-            <div class="product-details">
-                <div class="rating-wrapper">
-                    ${getStarIcons()} <!-- You can modify this function to display star icons based on product rating -->
-                </div>
-                <h3 class="h4 card-title">${product.productName}</h3>
-                <div class="price-wrapper">
-                    <data class="price" value="${product.price}">Rs ${product.price}</data>
-                    <div class="btn-wrapper">
-                        <button class="product-btn" aria-label="Add to Wishlist" onclick="addToWishlist('${product._id}')">
-                            <ion-icon name="heart-outline"></ion-icon>
-                            <div class="tooltip">Add to Wishlist</div>
-                        </button>
-                        <button class="product-btn" aria-label="Add to Cart" onclick="addToCart('${product._id}')">
-                            <ion-icon name="basket-outline"></ion-icon>
-                            <div class="tooltip">Add to Cart</div>
-                        </button>
-                    </div>
+    // Construct the card HTML using the product data
+    card.innerHTML = `
+        <div class="product-details">
+            <div class="rating-wrapper">
+                ${getStarIcons()} <!-- You can modify this function to display star icons based on product rating -->
+            </div>
+            <h3 class="h4 card-title">${product.productName}</h3>
+            <div class="price-wrapper">
+                <data class="price" value="${product.price}">Rs ${product.price}</data>
+                <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to Wishlist" onclick="addToWishlist('${product._id}')">
+                        <ion-icon name="heart-outline"></ion-icon>
+                        <div class="tooltip">Add to Wishlist</div>
+                    </button>
+                    <button class="product-btn" aria-label="Add to Cart" onclick="addToCart('${product._id}')">
+                        <ion-icon name="basket-outline"></ion-icon>
+                        <div class="tooltip">Add to Cart</div>
+                    </button>
                 </div>
             </div>
-        `;
+        </div>
+    `;
 
-        return card;
-    }
-
+    return card;
+}
     function addToWishlist(productId) {
         // Implement functionality to add product to wishlist
         console.log('Added to wishlist:', productId);
