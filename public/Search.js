@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.querySelector('.search-input');
-    const searchSubmit = document.querySelector('.search-submit');
     const productSection = document.querySelector('.product');
     const sectionsToHide = document.querySelectorAll('.hero, .service, .offers, .top-product, .testimonials, .enquiry');
     const footer = document.querySelector('footer');
@@ -8,8 +7,17 @@ document.addEventListener('DOMContentLoaded', function () {
     noMatchMessage.classList.add('no-match-message');
     noMatchMessage.innerText = 'No matching products found.';
 
-    searchSubmit.addEventListener('click', function () {
+    searchInput.addEventListener('input', function () {
         const searchTerm = searchInput.value.toLowerCase();
+        if (searchTerm === '') {
+            clearProducts();
+            showSections();
+        } else {
+            fetchAndFilterProducts(searchTerm);
+        }
+    });
+
+    function fetchAndFilterProducts(searchTerm) {
         fetch('/api/getproducts') // Fetch products from the server
             .then(response => {
                 if (!response.ok) {
@@ -22,31 +30,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 const filteredProducts = data.filter(product => product.productName.toLowerCase().includes(searchTerm));
 
                 if (filteredProducts.length > 0) {
-                    // Display only the matched product
-                    showProductOnly(filteredProducts[0]); // Assuming only one product is matched
+                    // Display matched products
+                    showProducts(filteredProducts);
                     hideSections();
                     removeNoMatchMessage();
                 } else {
+                    clearProducts();
                     showNoMatchMessage();
                 }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-    });
+    }
 
-    function showProductOnly(product) {
+    function showProducts(products) {
         productSection.innerHTML = ''; // Clear existing products
+        products.forEach(product => {
+            const productCard = createProductCard(product);
+            productSection.appendChild(productCard);
+        });
+    }
 
-        const productCard = createProductCard(product);
-        productSection.appendChild(productCard);
+    function clearProducts() {
+        productSection.innerHTML = ''; // Clear existing products
     }
 
     function createProductCard(product) {
         const card = document.createElement('div');
         card.classList.add('product-card');
         card.classList.add('searched-product'); // Add a class for styling the searched product
-    
+
         // Construct the card HTML using the product data
         card.innerHTML = `
             <div class="product-details">
@@ -69,10 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
         `;
-    
+
         return card;
-    }    
-    
+    }
 
     function addToWishlist(productId) {
         // Implement functionality to add product to wishlist
@@ -102,10 +115,17 @@ document.addEventListener('DOMContentLoaded', function () {
         footer.style.display = 'none'; // Hide the footer
     }
 
+    function showSections() {
+        sectionsToHide.forEach(function (section) {
+            section.style.display = '';
+        });
+        footer.style.display = ''; // Show the footer
+    }
+
     function showNoMatchMessage() {
         removeNoMatchMessage();
         searchInput.parentNode.insertBefore(noMatchMessage, searchInput.nextSibling);
-    }    
+    }
 
     function removeNoMatchMessage() {
         if (noMatchMessage.parentNode) {
