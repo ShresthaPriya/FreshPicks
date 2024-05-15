@@ -47,6 +47,10 @@ const productSchema = new mongoose.Schema({
     category:{
         type: String,
         required: true
+    },
+    farmer:{
+        type: String,
+        required: true
     }
 });
 

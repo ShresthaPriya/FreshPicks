@@ -100,16 +100,18 @@
                         const productCard = document.createElement('div');
                         productCard.classList.add('product-card');
 
-                        const productImage = document.createElement('div');
-                        productImage.classList.add('product-image');
-                        const img = document.createElement('img');
-                        img.src = product.imageUrl;
-                        img.alt = product.name;
-                        productImage.appendChild(img);
+                        // const productImage = document.createElement('div');
+                        // productImage.classList.add('product-image');
+                        // const img = document.createElement('img');
+                        // img.src = product.imageUrl;
+                        // img.alt = product.name;
+                        // productImage.appendChild(img);
 
                         const productName = document.createElement('div');
                         productName.classList.add('product-name');
                         productName.textContent = product.productName;
+
+                        
 
                         const productCategory = document.createElement('div');
                         productCategory.classList.add('product-category');
@@ -123,7 +125,7 @@
                         productDescription.classList.add('product-description');
                         productDescription.textContent = product.description;
 
-                        productCard.appendChild(productImage);
+                        // productCard.appendChild(productImage);
                         productCard.appendChild(productName);
                         productCard.appendChild(productPrice);
                         productCard.appendChild(productCategory);
