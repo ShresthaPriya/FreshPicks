@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     console.error('Error deleting product:', error);
                 }
             };
+        
 
             // Function to handle update button click
             const handleUpdateButtonClick = (productId, productName, price, description) => {
@@ -175,6 +176,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         const price = updateBtn.getAttribute('data-price');
                         const description = updateBtn.getAttribute('data-description');
                         handleUpdateButtonClick(productId, productName, price, description);
+                       
                     });
                 });
             } catch (error) {

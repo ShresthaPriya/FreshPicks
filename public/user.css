@@ -305,6 +305,99 @@
     transition: var(--transition-2);
   }
   
+  /* Styles for the searched product */
+.searched-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the product horizontally */
+  justify-content: center; /* Center the product vertically */
+  padding: 10px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  margin-bottom: 20px;
+  width: 50%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the product horizontally */
+}
+
+.searched-product .product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: center; /* Center the details horizontally */
+}
+
+.searched-product .rating-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center; /* Center the buttons horizontally */
+   gap: 10px;
+}
+
+.searched-product .card-title {
+  margin: 10px 0;
+}
+
+.searched-product .price-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.searched-product .btn-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+.searched-product .product-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.searched-product .product-btn:hover {
+  background-color: #e9ecef;
+}
+
+.searched-product .product-btn ion-icon {
+  font-size: 16px;
+}
+
+.searched-product .product-btn .tooltip {
+  display: none;
+}
+
+.searched-product .product-btn:hover .tooltip {
+  display: block;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 5px;
+}
+
+.no-match-message {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+  text-align: center; /* Center the message text */
+}
+
   .product-card .product-btn ion-icon { --ionicon-stroke-width: 50px; }
   
   .tooltip {
