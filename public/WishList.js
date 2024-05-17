@@ -1,31 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Selecting elements
     const addToWishlistButtons = document.querySelectorAll('.product-btn');
     const wishlistPanel = document.querySelector('[data-side-panel="whishlist"]');
     const wishlistHeader = document.querySelector('.header-action-btn[data-panel-btn="whishlist"]');
     const wishlistBadge = wishlistHeader.querySelector('.btn-badge');
     const scrollBtn = document.querySelector('.scroll-btn');
-  
+
     // Load wishlist items from local storage on page load
     loadWishlist();
-  
+
+    // Event listener for adding items to wishlist
     addToWishlistButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             const productCard = button.closest('.product-card');
             const productTitle = productCard.querySelector('.card-title a').innerText;
             const productPrice = productCard.querySelector('.price').getAttribute('value');
-  
+
             // Add the item to the wishlist
             addToWishlist(productTitle, productPrice);
-  
+
             // Update the subtotal
             updateSubtotal();
-  
+
             // Update wishlist badge count
             updateBadgeCount();
         });
     });
-  
-    // Event listener for removing items from the wishlist
+
+    // Event listener for removing items from wishlist
     wishlistPanel.addEventListener('click', function(event) {
         if (event.target.closest('.item-close-btn')) {
             event.preventDefault();
@@ -35,21 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
             updateBadgeCount();
         }
     });
-  
+
+    // Function to add item to wishlist
     function addToWishlist(title, price) {
-        // Ensure price is a number before storing
-        price = parseFloat(price);
-        if (isNaN(price)) {
-            console.error('Invalid price:', price);
-            return;
-        }
-    
         let wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
         wishlistItems.push({ title, price });
         localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
         renderWishlist();
     }
-  
+
+    // Function to remove item from wishlist
     function removeFromWishlist(itemToRemove) {
         let wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
         const index = Array.from(itemToRemove.parentNode.children).indexOf(itemToRemove);
@@ -57,20 +54,25 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
         renderWishlist();
     }
-  
+
+    // Function to update subtotal
     function updateSubtotal() {
         let subtotalValue = 0;
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+
         wishlistItems.forEach(function(item) {
-            if (!isNaN(item.price)) {
-                subtotalValue += item.price;
-            }
+            subtotalValue += parseFloat(item.price) || 0;
         });
-    
-        // Update the subtotal value in the panel
-        wishlistPanel.querySelector('.subtotal-value').innerText = 'Rs ' + subtotalValue.toFixed(2);
+
+        const subtotalElement = wishlistPanel.querySelector('.subtotal-value');
+        if (subtotalValue > 0) {
+            subtotalElement.innerText = 'Rs ' + subtotalValue.toFixed(2);
+        } else {
+            subtotalElement.innerText = 'Rs 0.00';
+        }
     }
-    
+
+    // Function to render wishlist
     function renderWishlist() {
         wishlistPanel.querySelector('.panel-list').innerHTML = '';
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -81,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="panel-card">
                     <div>
                         <p class="item-title">${item.title}</p>
-                        <span class="item-value">Rs ${item.price.toFixed(2)}</span>
+                        <span class="item-value">Rs ${item.price}</span>
                     </div>
                     <button class="item-close-btn" aria-label="Remove item">
                         <ion-icon name="close-outline"></ion-icon>
@@ -90,21 +92,24 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             wishlistPanel.querySelector('.panel-list').appendChild(newItem);
         });
-        // Update the subtotal and badge count after rendering
+
+        // Update the subtotal after rendering the wishlist
         updateSubtotal();
-        updateBadgeCount();
     }
-    
+
+    // Function to load wishlist on page load
     function loadWishlist() {
         renderWishlist();
+        updateBadgeCount();
     }
-  
+
+    // Function to update wishlist badge count
     function updateBadgeCount() {
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
         wishlistBadge.innerText = wishlistItems.length.toString().padStart(2, '0');
-    } 
+    }
 
-     // Check the height of the panel list and toggle the scroll button
+    // Function to toggle scroll button based on panel list height
     function toggleScrollButton() {
         if (wishlistPanel.querySelector('.panel-list').scrollHeight > 1200) {
             scrollBtn.style.display = 'block';
@@ -113,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Call the function initially and on window resize
+    // Call toggleScrollButton initially and on window resize
     toggleScrollButton();
     window.addEventListener('resize', toggleScrollButton);
 
