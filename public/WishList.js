@@ -37,6 +37,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   
     function addToWishlist(title, price) {
+        // Ensure price is a number before storing
+        price = parseFloat(price);
+        if (isNaN(price)) {
+            console.error('Invalid price:', price);
+            return;
+        }
+    
         let wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
         wishlistItems.push({ title, price });
         localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
@@ -53,13 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
   
     function updateSubtotal() {
         let subtotalValue = 0;
-        wishlistPanel.querySelectorAll('.item-value').forEach(function(itemValue) {
-            subtotalValue += parseFloat(itemValue.innerText.replace('Rs ', ''));
+        const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+        wishlistItems.forEach(function(item) {
+            if (!isNaN(item.price)) {
+                subtotalValue += item.price;
+            }
         });
-  
+    
+        // Update the subtotal value in the panel
         wishlistPanel.querySelector('.subtotal-value').innerText = 'Rs ' + subtotalValue.toFixed(2);
     }
-  
+    
     function renderWishlist() {
         wishlistPanel.querySelector('.panel-list').innerHTML = '';
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -70,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="panel-card">
                     <div>
                         <p class="item-title">${item.title}</p>
-                        <span class="item-value">Rs ${item.price}</span>
+                        <span class="item-value">Rs ${item.price.toFixed(2)}</span>
                     </div>
                     <button class="item-close-btn" aria-label="Remove item">
                         <ion-icon name="close-outline"></ion-icon>
@@ -79,12 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             wishlistPanel.querySelector('.panel-list').appendChild(newItem);
         });
-    }
-  
-    function loadWishlist() {
-        renderWishlist();
+        // Update the subtotal and badge count after rendering
         updateSubtotal();
         updateBadgeCount();
+    }
+    
+    function loadWishlist() {
+        renderWishlist();
     }
   
     function updateBadgeCount() {
@@ -112,5 +124,4 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
-  });
-  
+});
