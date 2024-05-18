@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productName = button.getAttribute('data-name');
                 const productPrice = button.getAttribute('data-price');
                 addToWishlist(productId, productName, productPrice);
-                updateBadgeCount('wishlist'); // Update wishlist badge when item is added
             });
         });
 
@@ -156,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productName = button.getAttribute('data-name');
                 const productPrice = button.getAttribute('data-price');
                 addToCart(productId, productName, productPrice);
-                updateBadgeCount('cart'); // Update cart badge when item is added
             });
         });
     }
@@ -168,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
         console.log('Added to wishlist:', { id: productId, name: productName, price: productPrice });
         renderWishlist();
+        updateBadgeCount('wishlist'); // Update wishlist badge
     }
 
     // Add item to the cart, remove from wishlist if already there, and update local storage
@@ -184,7 +183,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         renderWishlist(); // Update wishlist display
         renderCart(); // Update cart display
-        updateBadgeCount('wishlist'); // Update wishlist badge after removing item
+        updateBadgeCount('wishlist'); // Update wishlist badge
+        updateBadgeCount('cart'); // Update cart badge
     }
 
     // Render wishlist items in the wishlist panel
