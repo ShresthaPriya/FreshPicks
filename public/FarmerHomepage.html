@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshPicks</title>
+
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="FarmerHomepage.css">
+  <link rel="stylesheet" href="home.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!--   - #HEADER -->
+
+  <header class="header" data-header>
+
+    <div class="nav-wrapper">
+      <div class="container">
+
+        <h1 class="h1">
+          <a href="./index.html" class="logo">Fresh<span class="span">Picks</span></a>
+        </h1>
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <nav class="navbar" data-navbar>
+
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+          <ul class="navbar-list">
+
+            <li>
+              <a href="./FarmerHomepage.html" class="navbar-link">Home</a>
+            </li>
+
+            <li>
+              <a href="./farmer/product.html" class="navbar-link">Products</a>
+            </li>
+
+            <li>
+              <a href="#footers" class="navbar-link">Contact</a>
+            </li>
+            
+            <li>
+              <a href="#" id="signout" class="navbar-link">Signout</a>
+            </li>
+
+          </ul>
+
+        </nav>
+
+        <div class="header-action"> </div>
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero">
+        <div class="container">
+
+          <div class="hero-content">
+
+
+            <h2 class="h1 hero-title">
+                "FreshPicks <span class="span">Local Flavor, </span>
+                Delivered to Your <span class="span"> Door!"</span>
+            </h2>
+
+            <p class="hero-text">
+                Local Farmer's Market at Your Fingertips!           
+             </p>
+
+            <a href="./farmer/addprod.html" class="btn btn-primary">
+              <span class="span">Add Product</span>
+
+              <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="./user/1.png" width="603" height="634" loading="lazy" alt="Vegetables"
+              class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="section service">
+        <div class="container">
+
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="item-icon">
+                <img src="./farmer/image.png" width="40" height="40" loading="lazy" alt="Truck icon">
+              </div>
+
+              <h3 class="h3 item-title">Tech-support</h3>
+            </li>
+
+            <li class="service-item">
+              <div class="item-icon">
+                <img src="./farmer/price.png" width="40" height="40" loading="lazy"
+                  alt="Payment card icon">
+              </div>
+
+              <h3 class="h3 item-title">Pricing Sugestions</h3>
+            </li>
+
+            <li class="service-item">
+              <div class="item-icon">
+                <img src="./farmer/mngmt.png" width="40" height="40" loading="lazy" alt="Helpline icon">
+              </div>
+
+              <h3 class="h3 item-title">Product-sort</h3>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+    - #FOOTER
+  -->
+
+  <footer id="footers" class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="./index.html" class="logo">Fresh<span class="span">Picks</span></a>
+
+          <p class="footer-text">
+            Welcome to FreshPicks, your local farmers market connecting you with fresh, locally grown produce and artisanal products. At FreshPicks, we are committed to supporting sustainable agriculture practices and fostering a vibrant local economy. Our mission is to provide a platform for local farmers and artisans to sell their products directly to the community, creating a sustainable and thriving local food system. We believe in promoting healthy eating habits, supporting small-scale farmers and producers, and building connections between producers and consumers.
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-skype"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Contact</p>
+          </li>
+
+          <li class="footer-item">
+            <div class="contact-icon">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <address class="contact-link">
+              Kathmandu
+            </address>
+          </li>
+
+          <li class="footer-item">
+            <div class="contact-icon">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+
+            <a href="tel:+1800123456789" class="contact-link">+977 9837483749</a>
+          </li>
+
+          <li class="footer-item">
+            <div class="contact-icon">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <a href="mailto:organica@help.com" class="contact-link">freshpicks@help.com</a>
+          </li>
+
+        </ul>
+
+        
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+
+     
+        <ul class="footer-bottom-list">
+
+          <li>
+            <a href="#" class="footer-bottom-link">Term and Service</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-to-top" aria-label="Back to Top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="user.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const signoutButton = document.getElementById('signout');
+    signoutButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      const isConfirmed = confirm("Are you sure you want to log out?");
+
+      if (isConfirmed) {
+        window.location.href = "./index.html";
+      }
+    });
+  });
+</script>
+
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
